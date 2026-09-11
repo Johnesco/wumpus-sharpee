@@ -1,0 +1,311 @@
+{
+  "version": 1,
+  "story": "wumpus-sharpee",
+  "seed": 42,
+  "cards": [
+    {
+      "type": "opening",
+      "assertions": {
+        "channels": [
+          {
+            "id": "info.title",
+            "is": "Hunt the Wumpus"
+          },
+          {
+            "id": "info.description",
+            "is": "Sixteen dark rooms, one wumpus, one bottomless pit, and three arrows to tell them apart."
+          }
+        ]
+      }
+    },
+    {
+      "type": "boot",
+      "assertions": {
+        "contains": [
+          "Cave Mouth",
+          "Daylight gets three steps in and gives up."
+        ],
+        "notContains": [
+          "Blood is smeared",
+          "A grey slime films the rock"
+        ],
+        "states": [
+          "player.location = Cave Mouth",
+          "wumpus.location = Crooked Stair",
+          "the wumpus is sleeping"
+        ]
+      },
+      "branches": [
+        {
+          "branch": 1,
+          "cards": [
+            {
+              "type": "turn",
+              "command": "north",
+              "assertions": {
+                "contains": [
+                  "Hillside",
+                  "The wumpus is still in there. It will be in there tomorrow.",
+                  "*** You left the cave alive ***",
+                  "You have risen to the rank of a Survivor."
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "branch": 4,
+          "cards": [
+            {
+              "type": "turn",
+              "command": "east",
+              "assertions": {
+                "contains": [
+                  "Font"
+                ],
+                "notContains": [
+                  "Blood is smeared",
+                  "A grey slime films"
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "east",
+              "assertions": {
+                "contains": [
+                  "Flue",
+                  "Blood is smeared along the walls here"
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "east",
+              "assertions": {
+                "contains": [
+                  "Rift",
+                  "Pebbles kicked over the edge rattle for a long time"
+                ],
+                "notContains": [
+                  "Blood is smeared",
+                  "A grey slime films"
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "south",
+              "assertions": {
+                "contains": [
+                  "Dry Vault",
+                  "Blood is smeared along the walls here"
+                ],
+                "notContains": [
+                  "A grey slime films"
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "south",
+              "assertions": {
+                "contains": [
+                  "Scree Fall",
+                  "A grey slime films the rock, cold and freshly laid"
+                ],
+                "notContains": [
+                  "Blood is smeared"
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "south",
+              "assertions": {
+                "contains": [
+                  "Dead Well",
+                  "It takes your leg to the hip and then the rest of you",
+                  "*** You have fallen into the slime pit ***"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "turn",
+      "command": "read chart",
+      "assertions": {
+        "contains": [
+          "Cave Mouth - Font - Flue - Rift",
+          "Bellows - Larder - Drum - Dead Well",
+          "Nothing joins on a diagonal.",
+          "BLOOD ON THE WALLS MEANS IT IS NEXT DOOR. SLIME MEANS THE PIT IS."
+        ]
+      }
+    },
+    {
+      "type": "turn",
+      "command": "examine bow",
+      "assertions": {
+        "contains": [
+          "Three arrows in the quiver."
+        ],
+        "states": [
+          "the bow is three-arrows"
+        ]
+      }
+    },
+    {
+      "type": "turn",
+      "command": "east",
+      "assertions": {
+        "contains": [
+          "Font",
+          "always the same shape, always far too wide."
+        ],
+        "notContains": [
+          "Blood is smeared",
+          "A grey slime films the rock"
+        ],
+        "states": [
+          "player.location = Font"
+        ]
+      }
+    },
+    {
+      "type": "turn",
+      "command": "east",
+      "assertions": {
+        "contains": [
+          "Flue",
+          "Blood is smeared along the walls here, dragged and dried and not yours."
+        ],
+        "notContains": [
+          "A grey slime films the rock"
+        ],
+        "states": [
+          "player.location = Flue"
+        ]
+      },
+      "branches": [
+        {
+          "branch": 2,
+          "cards": [
+            {
+              "type": "turn",
+              "command": "south",
+              "assertions": {
+                "contains": [
+                  "Crooked Stair",
+                  "it is bulk, and it has been waiting for you to finish walking into it.",
+                  "*** You have been eaten by the wumpus ***"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "branch": 3,
+          "cards": [
+            {
+              "type": "turn",
+              "command": "shoot north",
+              "assertions": {
+                "contains": [
+                  "The arrow strikes bare rock somewhere past it",
+                  "Something very large shifts its weight, and stops, and listens."
+                ],
+                "notContains": [
+                  "*** You have killed the wumpus ***"
+                ],
+                "states": [
+                  "the bow is two-arrows",
+                  "the wumpus is stirring"
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "examine bow",
+              "assertions": {
+                "contains": [
+                  "Two arrows left."
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "look",
+              "assertions": {
+                "contains": [
+                  "Flue"
+                ],
+                "notContains": [
+                  "Blood is smeared"
+                ],
+                "states": [
+                  "wumpus.location = Dry Vault"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "turn",
+      "command": "west",
+      "assertions": {
+        "contains": [
+          "Font"
+        ],
+        "notContains": [
+          "Blood is smeared"
+        ],
+        "states": [
+          "player.location = Font"
+        ]
+      }
+    },
+    {
+      "type": "turn",
+      "command": "south",
+      "assertions": {
+        "contains": [
+          "Sump",
+          "Blood is smeared along the walls here, dragged and dried and not yours."
+        ],
+        "states": [
+          "player.location = Sump",
+          "the wumpus is sleeping"
+        ]
+      }
+    },
+    {
+      "type": "turn",
+      "command": "score",
+      "assertions": {
+        "contains": [
+          "You have scored 0 out of 25, earning you the rank of a Trespasser."
+        ]
+      }
+    },
+    {
+      "type": "turn",
+      "command": "shoot east",
+      "assertions": {
+        "contains": [
+          "strikes something that is not rock, and buries itself.",
+          "*** You have killed the wumpus ***",
+          "You have risen to the rank of a Wumpus-Slayer."
+        ],
+        "states": [
+          "the wumpus is shot"
+        ]
+      }
+    }
+  ]
+}

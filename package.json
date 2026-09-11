@@ -1,0 +1,73 @@
+{
+  "name": "wumpus-sharpee",
+  "version": "0.1.0",
+  "description": "Sixteen dark rooms, one wumpus, one bottomless pit, and three arrows to tell them apart.",
+  "private": true,
+  "scripts": {
+    "build": "sharpee build",
+    "build:browser": "sharpee build --browser",
+    "test": "sharpee test",
+    "play": "sharpee play"
+  },
+  "sharpee": {
+    "title": "Hunt the Wumpus",
+    "author": "John Googol"
+  },
+  "dependencies": {
+    "@sharpee/sharpee": "5.3.0",
+    "@sharpee/chord": "5.3.0",
+    "@sharpee/story-loader": "5.3.0",
+    "@sharpee/engine": "5.3.0",
+    "@sharpee/parser-en-us": "5.3.0",
+    "@sharpee/lang-en-us": "5.3.0",
+    "@sharpee/stdlib": "5.3.0",
+    "@sharpee/platform-browser": "5.3.0"
+  },
+  "devDependencies": {
+    "@sharpee/devkit": "5.3.0",
+    "esbuild": "^0.20.0"
+  },
+  "keywords": [
+    "interactive-fiction",
+    "sharpee",
+    "chord"
+  ],
+  "author": "John Googol",
+  "license": "MIT",
+  "overrides": {
+    "@sharpee/bootstrap": "5.3.0",
+    "@sharpee/branch-tester": "5.3.0",
+    "@sharpee/channel-service": "5.3.0",
+    "@sharpee/character": "5.3.0",
+    "@sharpee/chord": "5.3.0",
+    "@sharpee/core": "5.3.0",
+    "@sharpee/devkit": "5.3.0",
+    "@sharpee/engine": "5.3.0",
+    "@sharpee/event-processor": "5.3.0",
+    "@sharpee/ext-basic-combat": "5.3.0",
+    "@sharpee/ext-chapters": "5.3.0",
+    "@sharpee/ext-hunger": "5.3.0",
+    "@sharpee/ext-scoring": "5.3.0",
+    "@sharpee/ext-testing": "5.3.0",
+    "@sharpee/helpers": "5.3.0",
+    "@sharpee/ide-protocol": "5.3.0",
+    "@sharpee/if-domain": "5.3.0",
+    "@sharpee/if-services": "5.3.0",
+    "@sharpee/lang-en-us": "5.3.0",
+    "@sharpee/media": "5.3.0",
+    "@sharpee/parser-en-us": "5.3.0",
+    "@sharpee/platform-browser": "5.3.0",
+    "@sharpee/plugin-scheduler": "5.3.0",
+    "@sharpee/plugin-state-machine": "5.3.0",
+    "@sharpee/plugins": "5.3.0",
+    "@sharpee/queries": "5.3.0",
+    "@sharpee/sharpee": "5.3.0",
+    "@sharpee/stdlib": "5.3.0",
+    "@sharpee/story-loader": "5.3.0",
+    "@sharpee/story-runtime-baseline": "5.3.0",
+    "@sharpee/text-blocks": "5.3.0",
+    "@sharpee/transcript-tester": "5.3.0",
+    "@sharpee/world-index": "5.3.0",
+    "@sharpee/world-model": "5.3.0"
+  }
+}

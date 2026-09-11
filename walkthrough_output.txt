@@ -1,0 +1,50 @@
+Cave Mouth
+Daylight gets three steps in and gives up. Behind you, the hillside and the long walk back. Ahead, a throat of cold limestone that smells of wet rock and air that has not been outside in a very long time.
+
+> read chart
+The chart is a square, four rooms by four, with north at the top:
+
+Cave Mouth - Font - Flue - Rift
+Bone Shelf - Sump - Crooked Stair - Dry Vault
+Cistern - Weeping Gallery - Throat - Scree Fall
+Bellows - Larder - Drum - Dead Well
+
+Every room joins the rooms beside it in its row and the rooms above and below it in its column. Nothing joins on a diagonal. The mouth is the top left corner, and the way out is north from it.
+
+Along the bottom, in a different hand and a good deal less carefully:
+BLOOD ON THE WALLS MEANS IT IS NEXT DOOR. SLIME MEANS THE PIT IS.
+NEITHER ONE TELLS YOU WHICH SIDE.
+WORK IT OUT BEFORE YOU SPEND AN ARROW.
+
+> examine bow
+A short bow, drawn smooth at the grip by somebody else's hands. Three arrows in the quiver.
+
+> east
+Font
+A basin worn into the floor, brimful of water so still it reads as glass. Something has been drinking here. The mud at the rim is printed and printed again, always the same shape, always far too wide.
+
+> east
+Flue
+A chimney climbs out of the ceiling and narrows to nothing, too tight to follow even if you wanted to. Cold air comes down it in a steady draw, the way breath goes into a body rather than out of one. Blood is smeared along the walls here, dragged and dried and not yours.
+
+> west
+Font
+A basin worn into the floor, brimful of water so still it reads as glass. Something has been drinking here. The mud at the rim is printed and printed again, always the same shape, always far too wide.
+
+> south
+Sump
+Standing water over the whole floor, ankle deep and absolutely still. It takes the light off your lantern and returns none of it. Blood is smeared along the walls here, dragged and dried and not yours.
+
+> score
+You have scored 0 out of 25, earning you the rank of a Trespasser.
+
+> shoot east
+You loose. The arrow goes out into the black, strikes something that is not rock, and buries itself.
+
+The cave fills with a sound you will be hearing for the rest of your life. Then it stops, and a great deal of weight settles onto the floor, and the cave is only a cave again.
+
+*** You have killed the wumpus ***
+
+You have risen to the rank of a Survivor.
+
+You have risen to the rank of a Wumpus-Slayer.
