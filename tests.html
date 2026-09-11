@@ -90,10 +90,10 @@ li.turn.filtered-out, details.test.filtered-out { display: none; }
 </style>
 </head>
 <body>
-<div class="wrap"><h1>Hunt the Wumpus &mdash; test report</h1><div class="subtitle">5 lines &middot; 22 cards &middot; 77 assertions &middot; 60 ms</div><div class="summary"><div class="item"><span class="num status PASS">PASS</span></div><div class="item"><span class="num pass-num">5</span><span class="label">lines passed</span></div><div class="item"><span class="num ">0</span><span class="label">lines failed</span></div><div class="item"><span class="num pass-num">22</span><span class="label">cards passed</span></div><div class="item"><span class="num ">0</span><span class="label">cards failed</span></div><div class="item"><span class="num pass-num">77</span><span class="label">of 77 assertions</span></div><div class="item"><span class="num">60</span><span class="label">ms</span></div></div><div class="games"><span class="relpath">wumpus-sharpee.tests.json</span><span class="seed">seed 42</span><span>Sharpee 5.3.0 · Chord 3.6.0</span><span>generated 2026-09-11 02:46</span><span>0 unreached &middot; 0 skipped &middot; 0 errors</span></div><div class="controls"><button type="button" id="expand-all">Expand all</button><button type="button" id="collapse-all">Collapse all</button><label><input type="checkbox" id="failures-only"> failures only</label><input type="search" id="filter" placeholder="filter cards: command, prose, checks, room, item" aria-label="filter cards"><span class="hint" id="filter-hint"></span></div><h2>Lines</h2><table class="lines"><thead><tr><th>line</th><th>forks from</th><th class="num">cards</th><th class="num">passed</th><th class="num">failed</th><th class="num">ms</th></tr></thead><tbody><tr class="pass"><td><a href="#line-0">opening-shambles</a></td><td>&mdash;</td><td class="num">7</td><td class="num pass">7</td><td class="num ">0</td><td class="num">37</td></tr><tr class="pass"><td><a href="#line-1">shambles · west</a></td><td>opening-shambles &middot; T:1 look</td><td class="num">5</td><td class="num pass">5</td><td class="num ">0</td><td class="num">9</td></tr><tr class="pass"><td><a href="#line-2">shambles · map</a></td><td>opening-shambles &middot; T:1 look</td><td class="num">8</td><td class="num pass">8</td><td class="num ">0</td><td class="num">10</td></tr><tr class="pass"><td><a href="#line-3">gullet · north</a></td><td>opening-shambles &middot; T:5 west</td><td class="num">1</td><td class="num pass">1</td><td class="num ">0</td><td class="num">3</td></tr><tr class="pass"><td><a href="#line-4">gullet · shoot east</a></td><td>opening-shambles &middot; T:5 west</td><td class="num">1</td><td class="num pass">1</td><td class="num ">0</td><td class="num">1</td></tr></tbody></table><h2>Tests</h2><div class="tests"><details class="test" id="line-0" data-status="pass" open><summary class="test-summary"><span class="glyph pass">&#10003;</span><span class="test-name">opening-shambles</span><span class="test-summary-meta">main line &middot; 7 cards &middot; 7/7 &#10003; &middot; 37 ms</span></summary><div class="test-body"><ul class="transcript"><li class="turn" data-status="pass"><details class="turn-detail" data-status="pass"><summary class="turn-row"><span class="turn-tcount">&mdash;</span><span class="turn-cmd">&gt; (opening)</span><span class="turn-room"></span><span class="turn-inv" title="carrying nothing"></span><span class="turn-asserts"><span class="pass">&#10003; 2/2</span></span></summary><div class="turn-body"><pre class="turn-response empty">(the opening card checks what the client shows before play; no prose)</pre><details class="turn-extras"><summary class="turn-extras-summary">2 checks &#10003; &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">channel</span><span class="label">info.title is &quot;Hunt the Wumpus&quot;</span></li><li class="pass"><span class="kind">channel</span><span class="label">info.description is &quot;Twenty-five dark rooms, one wumpus, one bottomless pit, and one arrow.&quot;</span></li></ul><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
+<div class="wrap"><h1>Hunt the Wumpus &mdash; test report</h1><div class="subtitle">5 lines &middot; 22 cards &middot; 81 assertions &middot; 140 ms</div><div class="summary"><div class="item"><span class="num status PASS">PASS</span></div><div class="item"><span class="num pass-num">5</span><span class="label">lines passed</span></div><div class="item"><span class="num ">0</span><span class="label">lines failed</span></div><div class="item"><span class="num pass-num">22</span><span class="label">cards passed</span></div><div class="item"><span class="num ">0</span><span class="label">cards failed</span></div><div class="item"><span class="num pass-num">81</span><span class="label">of 81 assertions</span></div><div class="item"><span class="num">140</span><span class="label">ms</span></div></div><div class="games"><span class="relpath">wumpus-sharpee.tests.json</span><span class="seed">seed 42</span><span>Sharpee 5.3.0 · Chord 3.6.0</span><span>generated 2026-09-11 05:17</span><span>0 unreached &middot; 0 skipped &middot; 0 errors</span></div><div class="controls"><button type="button" id="expand-all">Expand all</button><button type="button" id="collapse-all">Collapse all</button><label><input type="checkbox" id="failures-only"> failures only</label><input type="search" id="filter" placeholder="filter cards: command, prose, checks, room, item" aria-label="filter cards"><span class="hint" id="filter-hint"></span></div><h2>Lines</h2><table class="lines"><thead><tr><th>line</th><th>forks from</th><th class="num">cards</th><th class="num">passed</th><th class="num">failed</th><th class="num">ms</th></tr></thead><tbody><tr class="pass"><td><a href="#line-0">opening-shambles</a></td><td>&mdash;</td><td class="num">7</td><td class="num pass">7</td><td class="num ">0</td><td class="num">77</td></tr><tr class="pass"><td><a href="#line-1">shambles · west</a></td><td>opening-shambles &middot; T:1 look</td><td class="num">5</td><td class="num pass">5</td><td class="num ">0</td><td class="num">26</td></tr><tr class="pass"><td><a href="#line-2">shambles · map</a></td><td>opening-shambles &middot; T:1 look</td><td class="num">8</td><td class="num pass">8</td><td class="num ">0</td><td class="num">31</td></tr><tr class="pass"><td><a href="#line-3">gullet · north</a></td><td>opening-shambles &middot; T:5 west</td><td class="num">1</td><td class="num pass">1</td><td class="num ">0</td><td class="num">3</td></tr><tr class="pass"><td><a href="#line-4">gullet · shoot east</a></td><td>opening-shambles &middot; T:5 west</td><td class="num">1</td><td class="num pass">1</td><td class="num ">0</td><td class="num">3</td></tr></tbody></table><h2>Tests</h2><div class="tests"><details class="test" id="line-0" data-status="pass" open><summary class="test-summary"><span class="glyph pass">&#10003;</span><span class="test-name">opening-shambles</span><span class="test-summary-meta">main line &middot; 7 cards &middot; 7/7 &#10003; &middot; 77 ms</span></summary><div class="test-body"><ul class="transcript"><li class="turn" data-status="pass"><details class="turn-detail" data-status="pass"><summary class="turn-row"><span class="turn-tcount">&mdash;</span><span class="turn-cmd">&gt; (opening)</span><span class="turn-room"></span><span class="turn-inv" title="carrying nothing"></span><span class="turn-asserts"><span class="pass">&#10003; 2/2</span></span></summary><div class="turn-body"><pre class="turn-response empty">(the opening card checks what the client shows before play; no prose)</pre><details class="turn-extras"><summary class="turn-extras-summary">2 checks &#10003; &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">channel</span><span class="label">info.title is &quot;Hunt the Wumpus&quot;</span></li><li class="pass"><span class="kind">channel</span><span class="label">info.description is &quot;Twenty-five dark rooms, one wumpus, one bottomless pit, and one arrow.&quot;</span></li></ul><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 2,
-  &quot;elapsedMs&quot;: 87,
+  &quot;elapsedMs&quot;: 162,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;opening-shambles&quot;,
   &quot;line&quot;: 0,
@@ -132,7 +132,7 @@ The passage has been widened, and not by water. <span class="hl" data-asserts="1
 <span class="hl" data-asserts="2">Tunnels lead south and west.</span></pre><details class="turn-extras"><summary class="turn-extras-summary">8 checks &#10003; &middot; Shambles &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Shambles</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">The tool marks are gouges, four at a time</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">Tunnels lead south and west.</span><button type="button" class="match-toggle" data-assertion-idx="2">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">Blood is smeared</span></li><li class="pass"><span class="kind">not contains</span><span class="label">A grey slime films the rock</span></li><li class="pass"><span class="kind">state</span><span class="label">player.location = Shambles</span></li><li class="pass"><span class="kind">state</span><span class="label">wumpus.location = Drum</span></li><li class="pass"><span class="kind">state</span><span class="label">the wumpus is sleeping</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Shambles</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 3,
-  &quot;elapsedMs&quot;: 87,
+  &quot;elapsedMs&quot;: 163,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;opening-shambles&quot;,
   &quot;line&quot;: 0,
@@ -228,7 +228,7 @@ STAND IN A ROOM YOU TRUST AND SHOOT ALONG A TUNNEL - SHOOT NORTH, SHOOT SOUTHWES
 Tunnels lead south and west.</pre><details class="turn-extras"><summary class="turn-extras-summary">4 checks &#10003; &middot; Shambles &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">BLOOD ON THE WALLS MEANS IT IS NEXT DOOR.</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">NEITHER ONE TELLS YOU WHICH SIDE. THAT IS THE WHOLE PROBLEM.</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">YOU HAVE ONE ARROW. IF IT DOES NOT FIND HIM, HE FINDS YOU.</span><button type="button" class="match-toggle" data-assertion-idx="2">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">DRAW THE MAP.</span><button type="button" class="match-toggle" data-assertion-idx="3">show</button></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Shambles</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 4,
-  &quot;elapsedMs&quot;: 95,
+  &quot;elapsedMs&quot;: 179,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;opening-shambles&quot;,
   &quot;line&quot;: 0,
@@ -289,7 +289,7 @@ A shaft drops straight down through the middle of the floor, ringed by a lip of 
 <span class="hl" data-asserts="1">Tunnels lead north, east, southeast and south.</span></pre><details class="turn-extras"><summary class="turn-extras-summary">5 checks &#10003; &middot; Dead Well &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Dead Well</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">Tunnels lead north, east, southeast and south.</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">Blood is smeared</span></li><li class="pass"><span class="kind">not contains</span><span class="label">A grey slime films the rock</span></li><li class="pass"><span class="kind">state</span><span class="label">player.location = Dead Well</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Dead Well</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 5,
-  &quot;elapsedMs&quot;: 99,
+  &quot;elapsedMs&quot;: 189,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;opening-shambles&quot;,
   &quot;line&quot;: 0,
@@ -359,7 +359,7 @@ The ceiling is pocked with hundreds of shallow hollows, each one polished. Nothi
 <span class="hl" data-asserts="1">Tunnels lead north, east and west.</span></pre><details class="turn-extras"><summary class="turn-extras-summary">5 checks &#10003; &middot; Rookery &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Rookery</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">Tunnels lead north, east and west.</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">Blood is smeared</span></li><li class="pass"><span class="kind">not contains</span><span class="label">A grey slime films the rock</span></li><li class="pass"><span class="kind">state</span><span class="label">player.location = Rookery</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Rookery</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 6,
-  &quot;elapsedMs&quot;: 101,
+  &quot;elapsedMs&quot;: 196,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;opening-shambles&quot;,
   &quot;line&quot;: 0,
@@ -439,7 +439,7 @@ You have an arrow, and an arrow will go down a tunnel without you. Work the room
 <span class="hl" data-asserts="5">Tunnels lead north and east.</span></pre><details class="turn-extras"><summary class="turn-extras-summary">9 checks &#10003; &middot; Gullet &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Gullet</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">Blood is smeared along the walls here, dragged and dried and not yours.</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">It is still tacky, it is smeared rather than spattered</span><button type="button" class="match-toggle" data-assertion-idx="2">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">Fresh blood means the wumpus is close - not in this room</span><button type="button" class="match-toggle" data-assertion-idx="3">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">You only get the one arrow.</span><button type="button" class="match-toggle" data-assertion-idx="4">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">Tunnels lead north and east.</span><button type="button" class="match-toggle" data-assertion-idx="5">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">A grey slime films the rock</span></li><li class="pass"><span class="kind">state</span><span class="label">player.location = Gullet</span></li><li class="pass"><span class="kind">state</span><span class="label">story.state = warned</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Gullet</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 7,
-  &quot;elapsedMs&quot;: 104,
+  &quot;elapsedMs&quot;: 201,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;opening-shambles&quot;,
   &quot;line&quot;: 0,
@@ -524,16 +524,18 @@ You have an arrow, and an arrow will go down a tunnel without you. Work the room
     ]
   },
   &quot;branches&quot;: &quot;[2 branch(es), rendered as their own lines]&quot;
-}</pre></details></div></details></div></details><div class="fork">&#8627; branch <a href="#line-3">gullet · north</a> &middot; 1 card <span class="pass">&#10003;</span></div><div class="fork">&#8627; branch <a href="#line-4">gullet · shoot east</a> &middot; 1 card <span class="pass">&#10003;</span></div></li><li class="turn" data-status="pass"><details class="turn-detail" data-status="pass"><summary class="turn-row"><span class="turn-tcount">T:6</span><span class="turn-cmd">&gt; shoot north</span><span class="turn-room">Gullet</span><span class="turn-inv" title="bow, note">2 carried</span><span class="turn-asserts"><span class="pass">&#10003; 4/4</span></span></summary><div class="turn-body"><pre class="turn-response">You loose. The arrow goes out along the tunnel, <span class="hl" data-asserts="0">strikes something that is not rock, and buries itself.</span>
+}</pre></details></div></details></div></details><div class="fork">&#8627; branch <a href="#line-3">gullet · north</a> &middot; 1 card <span class="pass">&#10003;</span></div><div class="fork">&#8627; branch <a href="#line-4">gullet · shoot east</a> &middot; 1 card <span class="pass">&#10003;</span></div></li><li class="turn" data-status="pass"><details class="turn-detail" data-status="pass"><summary class="turn-row"><span class="turn-tcount">T:6</span><span class="turn-cmd">&gt; shoot north</span><span class="turn-room">Gullet</span><span class="turn-inv" title="bow, note">2 carried</span><span class="turn-asserts"><span class="pass">&#10003; 5/5</span></span></summary><div class="turn-body"><pre class="turn-response">You loose. The arrow goes out along the tunnel, <span class="hl" data-asserts="0">strikes something that is not rock, and buries itself.</span>
 
 The cave fills with a sound you will be hearing for the rest of your life. Then it stops, and a great deal of weight settles onto the floor, and the cave is only a cave again.
 
 <span class="hl" data-asserts="1">*** You have killed the wumpus ***</span>
 
-<span class="hl" data-asserts="2">You have risen to the rank of a Wumpus-Slayer.</span></pre><details class="turn-extras"><summary class="turn-extras-summary">4 checks &#10003; &middot; Gullet &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">strikes something that is not rock, and buries itself.</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">*** You have killed the wumpus ***</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">You have risen to the rank of a Wumpus-Slayer.</span><button type="button" class="match-toggle" data-assertion-idx="2">show</button></li><li class="pass"><span class="kind">state</span><span class="label">the wumpus is shot</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Gullet</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
+<span class="hl" data-asserts="3">[Reload the page to go back down. The story cannot restart itself yet.]</span>
+
+<span class="hl" data-asserts="2">You have risen to the rank of a Wumpus-Slayer.</span></pre><details class="turn-extras"><summary class="turn-extras-summary">5 checks &#10003; &middot; Gullet &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">strikes something that is not rock, and buries itself.</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">*** You have killed the wumpus ***</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">You have risen to the rank of a Wumpus-Slayer.</span><button type="button" class="match-toggle" data-assertion-idx="2">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">[Reload the page to go back down. The story cannot restart itself yet.]</span><button type="button" class="match-toggle" data-assertion-idx="3">show</button></li><li class="pass"><span class="kind">state</span><span class="label">the wumpus is shot</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Gullet</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 8,
-  &quot;elapsedMs&quot;: 107,
+  &quot;elapsedMs&quot;: 211,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;opening-shambles&quot;,
   &quot;line&quot;: 0,
@@ -541,7 +543,7 @@ The cave fills with a sound you will be hearing for the rest of your life. Then 
   &quot;passed&quot;: true,
   &quot;expectedFailure&quot;: false,
   &quot;skipped&quot;: false,
-  &quot;actualOutput&quot;: &quot;You loose. The arrow goes out along the tunnel, strikes something that is not rock, and buries itself.\n\nThe cave fills with a sound you will be hearing for the rest of your life. Then it stops, and a great deal of weight settles onto the floor, and the cave is only a cave again.\n\n*** You have killed the wumpus ***\n\nYou have risen to the rank of a Wumpus-Slayer.&quot;,
+  &quot;actualOutput&quot;: &quot;You loose. The arrow goes out along the tunnel, strikes something that is not rock, and buries itself.\n\nThe cave fills with a sound you will be hearing for the rest of your life. Then it stops, and a great deal of weight settles onto the floor, and the cave is only a cave again.\n\n*** You have killed the wumpus ***\n\n[Reload the page to go back down. The story cannot restart itself yet.]\n\nYou have risen to the rank of a Wumpus-Slayer.&quot;,
   &quot;turn&quot;: 6,
   &quot;ending&quot;: &quot;victory&quot;,
   &quot;world&quot;: {
@@ -574,6 +576,10 @@ The cave fills with a sound you will be hearing for the rest of your life. Then 
       &quot;passed&quot;: true
     },
     {
+      &quot;description&quot;: &quot;contains \&quot;[Reload the page to go back down. The story cannot restart itself yet.]\&quot;&quot;,
+      &quot;passed&quot;: true
+    },
+    {
       &quot;description&quot;: &quot;state the wumpus is shot&quot;,
       &quot;passed&quot;: true
     }
@@ -585,19 +591,20 @@ The cave fills with a sound you will be hearing for the rest of your life. Then 
     &quot;contains&quot;: [
       &quot;strikes something that is not rock, and buries itself.&quot;,
       &quot;*** You have killed the wumpus ***&quot;,
-      &quot;You have risen to the rank of a Wumpus-Slayer.&quot;
+      &quot;You have risen to the rank of a Wumpus-Slayer.&quot;,
+      &quot;[Reload the page to go back down. The story cannot restart itself yet.]&quot;
     ],
     &quot;states&quot;: [
       &quot;the wumpus is shot&quot;
     ]
   }
-}</pre></details></div></details></div></details></li></ul></div></details><details class="test" id="line-1" data-status="pass"><summary class="test-summary"><span class="glyph pass">&#10003;</span><span class="test-name">shambles · west</span><span class="test-summary-meta">branch &middot; 5 cards &middot; 5/5 &#10003; &middot; 9 ms</span></summary><div class="test-body"><div class="line-note">Replays <a href="#line-0">opening-shambles</a> through T:1 <code>&gt; look</code> (1 command replayed, none re-asserted), then diverges.</div><ul class="transcript"><li class="turn" data-status="pass"><details class="turn-detail" data-status="pass"><summary class="turn-row"><span class="turn-tcount">T:2</span><span class="turn-cmd">&gt; west</span><span class="turn-room">Dead Well</span><span class="turn-inv" title="bow, note">2 carried</span><span class="turn-asserts"><span class="pass">&#10003; 4/4</span></span></summary><div class="turn-body"><pre class="turn-response"><span class="hl" data-asserts="0">Dead Well</span>
+}</pre></details></div></details></div></details></li></ul></div></details><details class="test" id="line-1" data-status="pass"><summary class="test-summary"><span class="glyph pass">&#10003;</span><span class="test-name">shambles · west</span><span class="test-summary-meta">branch &middot; 5 cards &middot; 5/5 &#10003; &middot; 26 ms</span></summary><div class="test-body"><div class="line-note">Replays <a href="#line-0">opening-shambles</a> through T:1 <code>&gt; look</code> (1 command replayed, none re-asserted), then diverges.</div><ul class="transcript"><li class="turn" data-status="pass"><details class="turn-detail" data-status="pass"><summary class="turn-row"><span class="turn-tcount">T:2</span><span class="turn-cmd">&gt; west</span><span class="turn-room">Dead Well</span><span class="turn-inv" title="bow, note">2 carried</span><span class="turn-asserts"><span class="pass">&#10003; 4/4</span></span></summary><div class="turn-body"><pre class="turn-response"><span class="hl" data-asserts="0">Dead Well</span>
 A shaft drops straight down through the middle of the floor, ringed by a lip of stone worn smooth by something that uses it. Nothing comes back up out of it. Not even sound.
 
 <span class="hl" data-asserts="1">Tunnels lead north, east, southeast and south.</span></pre><details class="turn-extras"><summary class="turn-extras-summary">4 checks &#10003; &middot; Dead Well &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Dead Well</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">Tunnels lead north, east, southeast and south.</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">Blood is smeared</span></li><li class="pass"><span class="kind">not contains</span><span class="label">A grey slime films the rock</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Dead Well</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 11,
-  &quot;elapsedMs&quot;: 135,
+  &quot;elapsedMs&quot;: 276,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;shambles · west&quot;,
   &quot;line&quot;: 0,
@@ -660,7 +667,7 @@ A single block of fallen ceiling sits square in the middle of the floor, flat on
 <span class="hl" data-asserts="1">Tunnels lead north, east, south, west and northwest.</span></pre><details class="turn-extras"><summary class="turn-extras-summary">4 checks &#10003; &middot; Anvil &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Anvil</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">Tunnels lead north, east, south, west and northwest.</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">Blood is smeared</span></li><li class="pass"><span class="kind">not contains</span><span class="label">A grey slime films the rock</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Anvil</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 12,
-  &quot;elapsedMs&quot;: 137,
+  &quot;elapsedMs&quot;: 279,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;shambles · west&quot;,
   &quot;line&quot;: 0,
@@ -723,7 +730,7 @@ The rock has collapsed into steps, every one of them canted the wrong way. You c
 <span class="hl" data-asserts="1">Tunnels lead north, east, southeast and west.</span></pre><details class="turn-extras"><summary class="turn-extras-summary">4 checks &#10003; &middot; Crooked Stair &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Crooked Stair</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">Tunnels lead north, east, southeast and west.</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">Blood is smeared</span></li><li class="pass"><span class="kind">not contains</span><span class="label">A grey slime films the rock</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Crooked Stair</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 13,
-  &quot;elapsedMs&quot;: 138,
+  &quot;elapsedMs&quot;: 284,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;shambles · west&quot;,
   &quot;line&quot;: 0,
@@ -786,7 +793,7 @@ Standing water over the whole floor, ankle deep and absolutely still. It takes t
 Tunnels lead north, east, west and northwest.</pre><details class="turn-extras"><summary class="turn-extras-summary">4 checks &#10003; &middot; Sump &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Sump</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">A grey slime films the rock, cold and freshly laid</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">Blood is smeared</span></li><li class="pass"><span class="kind">state</span><span class="label">player.location = Sump</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Sump</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 14,
-  &quot;elapsedMs&quot;: 140,
+  &quot;elapsedMs&quot;: 286,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;shambles · west&quot;,
   &quot;line&quot;: 0,
@@ -845,15 +852,17 @@ Tunnels lead north, east, west and northwest.</pre><details class="turn-extras">
       &quot;player.location = Sump&quot;
     ]
   }
-}</pre></details></div></details></div></details></li><li class="turn" data-status="pass"><details class="turn-detail" data-status="pass"><summary class="turn-row"><span class="turn-tcount">T:6</span><span class="turn-cmd">&gt; northwest</span><span class="turn-room">Cistern</span><span class="turn-inv" title="bow, note">2 carried</span><span class="turn-asserts"><span class="pass">&#10003; 4/4</span></span></summary><div class="turn-body"><pre class="turn-response"><span class="hl" data-asserts="0">Cistern</span>
+}</pre></details></div></details></div></details></li><li class="turn" data-status="pass"><details class="turn-detail" data-status="pass"><summary class="turn-row"><span class="turn-tcount">T:6</span><span class="turn-cmd">&gt; northwest</span><span class="turn-room">Cistern</span><span class="turn-inv" title="bow, note">2 carried</span><span class="turn-asserts"><span class="pass">&#10003; 5/5</span></span></summary><div class="turn-body"><pre class="turn-response"><span class="hl" data-asserts="0">Cistern</span>
 A pool sunk into the rock, its rim cut square by somebody a long time ago, using tools. Whoever it was did not finish the fourth side.
 
 The floor is not floor. <span class="hl" data-asserts="1">It takes your leg to the hip and then the rest of you</span>, without hurrying, and without any sound at all.
 
-<span class="hl" data-asserts="2">*** You have fallen into the slime pit ***</span></pre><details class="turn-extras"><summary class="turn-extras-summary">4 checks &#10003; &middot; Cistern &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Cistern</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">It takes your leg to the hip and then the rest of you</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">*** You have fallen into the slime pit ***</span><button type="button" class="match-toggle" data-assertion-idx="2">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">Tunnels lead</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Cistern</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
+<span class="hl" data-asserts="2">*** You have fallen into the slime pit ***</span>
+
+<span class="hl" data-asserts="3">[Reload the page to go back down. The story cannot restart itself yet.]</span></pre><details class="turn-extras"><summary class="turn-extras-summary">5 checks &#10003; &middot; Cistern &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Cistern</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">It takes your leg to the hip and then the rest of you</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">*** You have fallen into the slime pit ***</span><button type="button" class="match-toggle" data-assertion-idx="2">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">[Reload the page to go back down. The story cannot restart itself yet.]</span><button type="button" class="match-toggle" data-assertion-idx="3">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">Tunnels lead</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Cistern</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 15,
-  &quot;elapsedMs&quot;: 142,
+  &quot;elapsedMs&quot;: 295,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;shambles · west&quot;,
   &quot;line&quot;: 0,
@@ -861,7 +870,7 @@ The floor is not floor. <span class="hl" data-asserts="1">It takes your leg to t
   &quot;passed&quot;: true,
   &quot;expectedFailure&quot;: false,
   &quot;skipped&quot;: false,
-  &quot;actualOutput&quot;: &quot;Cistern\nA pool sunk into the rock, its rim cut square by somebody a long time ago, using tools. Whoever it was did not finish the fourth side.\n\nThe floor is not floor. It takes your leg to the hip and then the rest of you, without hurrying, and without any sound at all.\n\n*** You have fallen into the slime pit ***&quot;,
+  &quot;actualOutput&quot;: &quot;Cistern\nA pool sunk into the rock, its rim cut square by somebody a long time ago, using tools. Whoever it was did not finish the fourth side.\n\nThe floor is not floor. It takes your leg to the hip and then the rest of you, without hurrying, and without any sound at all.\n\n*** You have fallen into the slime pit ***\n\n[Reload the page to go back down. The story cannot restart itself yet.]&quot;,
   &quot;turn&quot;: 6,
   &quot;ending&quot;: &quot;defeat&quot;,
   &quot;world&quot;: {
@@ -894,6 +903,10 @@ The floor is not floor. <span class="hl" data-asserts="1">It takes your leg to t
       &quot;passed&quot;: true
     },
     {
+      &quot;description&quot;: &quot;contains \&quot;[Reload the page to go back down. The story cannot restart itself yet.]\&quot;&quot;,
+      &quot;passed&quot;: true
+    },
+    {
       &quot;description&quot;: &quot;not contains \&quot;Tunnels lead\&quot;&quot;,
       &quot;passed&quot;: true
     }
@@ -905,18 +918,19 @@ The floor is not floor. <span class="hl" data-asserts="1">It takes your leg to t
     &quot;contains&quot;: [
       &quot;Cistern&quot;,
       &quot;It takes your leg to the hip and then the rest of you&quot;,
-      &quot;*** You have fallen into the slime pit ***&quot;
+      &quot;*** You have fallen into the slime pit ***&quot;,
+      &quot;[Reload the page to go back down. The story cannot restart itself yet.]&quot;
     ],
     &quot;notContains&quot;: [
       &quot;Tunnels lead&quot;
     ]
   }
-}</pre></details></div></details></div></details></li></ul></div></details><details class="test" id="line-2" data-status="pass"><summary class="test-summary"><span class="glyph pass">&#10003;</span><span class="test-name">shambles · map</span><span class="test-summary-meta">branch &middot; 8 cards &middot; 8/8 &#10003; &middot; 10 ms</span></summary><div class="test-body"><div class="line-note">Replays <a href="#line-0">opening-shambles</a> through T:1 <code>&gt; look</code> (1 command replayed, none re-asserted), then diverges.</div><ul class="transcript"><li class="turn" data-status="pass"><details class="turn-detail" data-status="pass"><summary class="turn-row"><span class="turn-tcount">T:2</span><span class="turn-cmd">&gt; map</span><span class="turn-room">Shambles</span><span class="turn-inv" title="bow, note">2 carried</span><span class="turn-asserts"><span class="pass">&#10003; 2/2</span></span></summary><div class="turn-body"><pre class="turn-response"><span class="hl" data-asserts="0">You have not stood here before.</span> Every shape in this room is news, and none of the news is good.
+}</pre></details></div></details></div></details></li></ul></div></details><details class="test" id="line-2" data-status="pass"><summary class="test-summary"><span class="glyph pass">&#10003;</span><span class="test-name">shambles · map</span><span class="test-summary-meta">branch &middot; 8 cards &middot; 8/8 &#10003; &middot; 31 ms</span></summary><div class="test-body"><div class="line-note">Replays <a href="#line-0">opening-shambles</a> through T:1 <code>&gt; look</code> (1 command replayed, none re-asserted), then diverges.</div><ul class="transcript"><li class="turn" data-status="pass"><details class="turn-detail" data-status="pass"><summary class="turn-row"><span class="turn-tcount">T:2</span><span class="turn-cmd">&gt; map</span><span class="turn-room">Shambles</span><span class="turn-inv" title="bow, note">2 carried</span><span class="turn-asserts"><span class="pass">&#10003; 2/2</span></span></summary><div class="turn-body"><pre class="turn-response"><span class="hl" data-asserts="0">You have not stood here before.</span> Every shape in this room is news, and none of the news is good.
 
 Tunnels lead south and west.</pre><details class="turn-extras"><summary class="turn-extras-summary">2 checks &#10003; &middot; Shambles &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">You have not stood here before.</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">You have been here once already.</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Shambles</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 18,
-  &quot;elapsedMs&quot;: 166,
+  &quot;elapsedMs&quot;: 337,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;shambles · map&quot;,
   &quot;line&quot;: 0,
@@ -969,7 +983,7 @@ A shaft drops straight down through the middle of the floor, ringed by a lip of 
 Tunnels lead north, east, southeast and south.</pre><details class="turn-extras"><summary class="turn-extras-summary">1 check &#10003; &middot; Dead Well &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Dead Well</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Dead Well</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 19,
-  &quot;elapsedMs&quot;: 168,
+  &quot;elapsedMs&quot;: 340,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;shambles · map&quot;,
   &quot;line&quot;: 0,
@@ -1014,7 +1028,7 @@ Tunnels lead north, east, southeast and south.</pre><details class="turn-extras"
 Tunnels lead north, east, southeast and south.</pre><details class="turn-extras"><summary class="turn-extras-summary">1 check &#10003; &middot; Dead Well &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">You have not stood here before.</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Dead Well</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 20,
-  &quot;elapsedMs&quot;: 169,
+  &quot;elapsedMs&quot;: 346,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;shambles · map&quot;,
   &quot;line&quot;: 0,
@@ -1060,7 +1074,7 @@ The passage has been widened, and not by water. The tool marks are gouges, four 
 Tunnels lead south and west.</pre><details class="turn-extras"><summary class="turn-extras-summary">2 checks &#10003; &middot; Shambles &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Shambles</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">state</span><span class="label">player.location = Shambles</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Shambles</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 21,
-  &quot;elapsedMs&quot;: 170,
+  &quot;elapsedMs&quot;: 351,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;shambles · map&quot;,
   &quot;line&quot;: 0,
@@ -1112,7 +1126,7 @@ Tunnels lead south and west.</pre><details class="turn-extras"><summary class="t
 Tunnels lead south and west.</pre><details class="turn-extras"><summary class="turn-extras-summary">2 checks &#10003; &middot; Shambles &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">You have been here once already.</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">You have not stood here before.</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Shambles</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 22,
-  &quot;elapsedMs&quot;: 171,
+  &quot;elapsedMs&quot;: 353,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;shambles · map&quot;,
   &quot;line&quot;: 0,
@@ -1165,7 +1179,7 @@ A shaft drops straight down through the middle of the floor, ringed by a lip of 
 Tunnels lead north, east, southeast and south.</pre><details class="turn-extras"><summary class="turn-extras-summary">1 check &#10003; &middot; Dead Well &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Dead Well</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Dead Well</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 23,
-  &quot;elapsedMs&quot;: 172,
+  &quot;elapsedMs&quot;: 359,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;shambles · map&quot;,
   &quot;line&quot;: 0,
@@ -1211,7 +1225,7 @@ The passage has been widened, and not by water. The tool marks are gouges, four 
 Tunnels lead south and west.</pre><details class="turn-extras"><summary class="turn-extras-summary">1 check &#10003; &middot; Shambles &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Shambles</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Shambles</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 24,
-  &quot;elapsedMs&quot;: 173,
+  &quot;elapsedMs&quot;: 362,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;shambles · map&quot;,
   &quot;line&quot;: 0,
@@ -1256,7 +1270,7 @@ Tunnels lead south and west.</pre><details class="turn-extras"><summary class="t
 Tunnels lead south and west.</pre><details class="turn-extras"><summary class="turn-extras-summary">2 checks &#10003; &middot; Shambles &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">enough times to walk it in the dark</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">You have been here once already.</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Shambles</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 25,
-  &quot;elapsedMs&quot;: 174,
+  &quot;elapsedMs&quot;: 366,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;shambles · map&quot;,
   &quot;line&quot;: 0,
@@ -1303,15 +1317,17 @@ Tunnels lead south and west.</pre><details class="turn-extras"><summary class="t
       &quot;You have been here once already.&quot;
     ]
   }
-}</pre></details></div></details></div></details></li></ul></div></details><details class="test" id="line-3" data-status="pass"><summary class="test-summary"><span class="glyph pass">&#10003;</span><span class="test-name">gullet · north</span><span class="test-summary-meta">branch &middot; 1 card &middot; 1/1 &#10003; &middot; 3 ms</span></summary><div class="test-body"><div class="line-note">Replays <a href="#line-0">opening-shambles</a> through T:5 <code>&gt; west</code> (5 commands replayed, none re-asserted), then diverges.</div><ul class="transcript"><li class="turn" data-status="pass"><details class="turn-detail" data-status="pass"><summary class="turn-row"><span class="turn-tcount">T:6</span><span class="turn-cmd">&gt; north</span><span class="turn-room">Drum</span><span class="turn-inv" title="bow, note">2 carried</span><span class="turn-asserts"><span class="pass">&#10003; 3/3</span></span></summary><div class="turn-body"><pre class="turn-response"><span class="hl" data-asserts="0">Drum</span>
+}</pre></details></div></details></div></details></li></ul></div></details><details class="test" id="line-3" data-status="pass"><summary class="test-summary"><span class="glyph pass">&#10003;</span><span class="test-name">gullet · north</span><span class="test-summary-meta">branch &middot; 1 card &middot; 1/1 &#10003; &middot; 3 ms</span></summary><div class="test-body"><div class="line-note">Replays <a href="#line-0">opening-shambles</a> through T:5 <code>&gt; west</code> (5 commands replayed, none re-asserted), then diverges.</div><ul class="transcript"><li class="turn" data-status="pass"><details class="turn-detail" data-status="pass"><summary class="turn-row"><span class="turn-tcount">T:6</span><span class="turn-cmd">&gt; north</span><span class="turn-room">Drum</span><span class="turn-inv" title="bow, note">2 carried</span><span class="turn-asserts"><span class="pass">&#10003; 4/4</span></span></summary><div class="turn-body"><pre class="turn-response"><span class="hl" data-asserts="0">Drum</span>
 The floor rings hollow underfoot, one deep struck note that travels further than you would like it to. There is a space beneath this space.
 
 The dark ahead of you is not dark, <span class="hl" data-asserts="1">it is bulk, and it has been waiting for you to finish walking into it.</span>
 
-<span class="hl" data-asserts="2">*** You have been eaten by the wumpus ***</span></pre><details class="turn-extras"><summary class="turn-extras-summary">3 checks &#10003; &middot; Drum &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Drum</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">it is bulk, and it has been waiting for you to finish walking into it.</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">*** You have been eaten by the wumpus ***</span><button type="button" class="match-toggle" data-assertion-idx="2">show</button></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Drum</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
+<span class="hl" data-asserts="2">*** You have been eaten by the wumpus ***</span>
+
+<span class="hl" data-asserts="3">[Reload the page to go back down. The story cannot restart itself yet.]</span></pre><details class="turn-extras"><summary class="turn-extras-summary">4 checks &#10003; &middot; Drum &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">Drum</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">it is bulk, and it has been waiting for you to finish walking into it.</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">*** You have been eaten by the wumpus ***</span><button type="button" class="match-toggle" data-assertion-idx="2">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">[Reload the page to go back down. The story cannot restart itself yet.]</span><button type="button" class="match-toggle" data-assertion-idx="3">show</button></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Drum</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 28,
-  &quot;elapsedMs&quot;: 203,
+  &quot;elapsedMs&quot;: 429,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;gullet · north&quot;,
   &quot;line&quot;: 0,
@@ -1319,7 +1335,7 @@ The dark ahead of you is not dark, <span class="hl" data-asserts="1">it is bulk,
   &quot;passed&quot;: true,
   &quot;expectedFailure&quot;: false,
   &quot;skipped&quot;: false,
-  &quot;actualOutput&quot;: &quot;Drum\nThe floor rings hollow underfoot, one deep struck note that travels further than you would like it to. There is a space beneath this space.\n\nThe dark ahead of you is not dark, it is bulk, and it has been waiting for you to finish walking into it.\n\n*** You have been eaten by the wumpus ***&quot;,
+  &quot;actualOutput&quot;: &quot;Drum\nThe floor rings hollow underfoot, one deep struck note that travels further than you would like it to. There is a space beneath this space.\n\nThe dark ahead of you is not dark, it is bulk, and it has been waiting for you to finish walking into it.\n\n*** You have been eaten by the wumpus ***\n\n[Reload the page to go back down. The story cannot restart itself yet.]&quot;,
   &quot;turn&quot;: 6,
   &quot;ending&quot;: &quot;defeat&quot;,
   &quot;world&quot;: {
@@ -1350,6 +1366,10 @@ The dark ahead of you is not dark, <span class="hl" data-asserts="1">it is bulk,
     {
       &quot;description&quot;: &quot;contains \&quot;*** You have been eaten by the wumpus ***\&quot;&quot;,
       &quot;passed&quot;: true
+    },
+    {
+      &quot;description&quot;: &quot;contains \&quot;[Reload the page to go back down. The story cannot restart itself yet.]\&quot;&quot;,
+      &quot;passed&quot;: true
     }
   ]
 }</pre><pre class="raw-json">{
@@ -1359,17 +1379,20 @@ The dark ahead of you is not dark, <span class="hl" data-asserts="1">it is bulk,
     &quot;contains&quot;: [
       &quot;Drum&quot;,
       &quot;it is bulk, and it has been waiting for you to finish walking into it.&quot;,
-      &quot;*** You have been eaten by the wumpus ***&quot;
+      &quot;*** You have been eaten by the wumpus ***&quot;,
+      &quot;[Reload the page to go back down. The story cannot restart itself yet.]&quot;
     ]
   }
-}</pre></details></div></details></div></details></li></ul></div></details><details class="test" id="line-4" data-status="pass"><summary class="test-summary"><span class="glyph pass">&#10003;</span><span class="test-name">gullet · shoot east</span><span class="test-summary-meta">branch &middot; 1 card &middot; 1/1 &#10003; &middot; 1 ms</span></summary><div class="test-body"><div class="line-note">Replays <a href="#line-0">opening-shambles</a> through T:5 <code>&gt; west</code> (5 commands replayed, none re-asserted), then diverges.</div><ul class="transcript"><li class="turn" data-status="pass"><details class="turn-detail" data-status="pass"><summary class="turn-row"><span class="turn-tcount">T:6</span><span class="turn-cmd">&gt; shoot east</span><span class="turn-room">Gullet</span><span class="turn-inv" title="bow, note">2 carried</span><span class="turn-asserts"><span class="pass">&#10003; 5/5</span></span></summary><div class="turn-body"><pre class="turn-response">You loose. The arrow goes out along the tunnel and <span class="hl" data-asserts="0">finds nothing but rock</span>, and the sound of it goes everywhere at once.
+}</pre></details></div></details></div></details></li></ul></div></details><details class="test" id="line-4" data-status="pass"><summary class="test-summary"><span class="glyph pass">&#10003;</span><span class="test-name">gullet · shoot east</span><span class="test-summary-meta">branch &middot; 1 card &middot; 1/1 &#10003; &middot; 3 ms</span></summary><div class="test-body"><div class="line-note">Replays <a href="#line-0">opening-shambles</a> through T:5 <code>&gt; west</code> (5 commands replayed, none re-asserted), then diverges.</div><ul class="transcript"><li class="turn" data-status="pass"><details class="turn-detail" data-status="pass"><summary class="turn-row"><span class="turn-tcount">T:6</span><span class="turn-cmd">&gt; shoot east</span><span class="turn-room">Gullet</span><span class="turn-inv" title="bow, note">2 carried</span><span class="turn-asserts"><span class="pass">&#10003; 6/6</span></span></summary><div class="turn-body"><pre class="turn-response">You loose. The arrow goes out along the tunnel and <span class="hl" data-asserts="0">finds nothing but rock</span>, and the sound of it goes everywhere at once.
 
 For a moment nothing happens. Then, a long way off, something enormous <span class="hl" data-asserts="1">stops pretending to be asleep</span>, and the dark between you and it turns out to be no distance at all.
 
-<span class="hl" data-asserts="2">*** The wumpus found you first ***</span></pre><details class="turn-extras"><summary class="turn-extras-summary">5 checks &#10003; &middot; Gullet &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">finds nothing but rock</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">stops pretending to be asleep</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">*** The wumpus found you first ***</span><button type="button" class="match-toggle" data-assertion-idx="2">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">*** You have killed the wumpus ***</span></li><li class="pass"><span class="kind">state</span><span class="label">the wumpus is sleeping</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Gullet</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
+<span class="hl" data-asserts="2">*** The wumpus found you first ***</span>
+
+<span class="hl" data-asserts="3">[Reload the page to go back down. The story cannot restart itself yet.]</span></pre><details class="turn-extras"><summary class="turn-extras-summary">6 checks &#10003; &middot; Gullet &middot; 2 carried &middot; raw</summary><div class="turn-extras-body"><h4>Checks</h4><ul class="assertions"><li class="pass"><span class="kind">contains</span><span class="label">finds nothing but rock</span><button type="button" class="match-toggle" data-assertion-idx="0">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">stops pretending to be asleep</span><button type="button" class="match-toggle" data-assertion-idx="1">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">*** The wumpus found you first ***</span><button type="button" class="match-toggle" data-assertion-idx="2">show</button></li><li class="pass"><span class="kind">contains</span><span class="label">[Reload the page to go back down. The story cannot restart itself yet.]</span><button type="button" class="match-toggle" data-assertion-idx="3">show</button></li><li class="pass"><span class="kind">not contains</span><span class="label">*** You have killed the wumpus ***</span></li><li class="pass"><span class="kind">state</span><span class="label">the wumpus is sleeping</span></li></ul><h4>World after this turn</h4><dl class="kv"><dt>Location</dt><dd>Gullet</dd><dt>Carrying</dt><dd>bow, note</dd></dl><details class="raw"><summary>Raw: the runner record and the authored card</summary><pre class="raw-json">{
   &quot;schemaVersion&quot;: 2,
   &quot;seq&quot;: 31,
-  &quot;elapsedMs&quot;: 226,
+  &quot;elapsedMs&quot;: 471,
   &quot;type&quot;: &quot;command-result&quot;,
   &quot;file&quot;: &quot;gullet · shoot east&quot;,
   &quot;line&quot;: 0,
@@ -1377,7 +1400,7 @@ For a moment nothing happens. Then, a long way off, something enormous <span cla
   &quot;passed&quot;: true,
   &quot;expectedFailure&quot;: false,
   &quot;skipped&quot;: false,
-  &quot;actualOutput&quot;: &quot;You loose. The arrow goes out along the tunnel and finds nothing but rock, and the sound of it goes everywhere at once.\n\nFor a moment nothing happens. Then, a long way off, something enormous stops pretending to be asleep, and the dark between you and it turns out to be no distance at all.\n\n*** The wumpus found you first ***&quot;,
+  &quot;actualOutput&quot;: &quot;You loose. The arrow goes out along the tunnel and finds nothing but rock, and the sound of it goes everywhere at once.\n\nFor a moment nothing happens. Then, a long way off, something enormous stops pretending to be asleep, and the dark between you and it turns out to be no distance at all.\n\n*** The wumpus found you first ***\n\n[Reload the page to go back down. The story cannot restart itself yet.]&quot;,
   &quot;turn&quot;: 6,
   &quot;ending&quot;: &quot;defeat&quot;,
   &quot;world&quot;: {
@@ -1410,6 +1433,10 @@ For a moment nothing happens. Then, a long way off, something enormous <span cla
       &quot;passed&quot;: true
     },
     {
+      &quot;description&quot;: &quot;contains \&quot;[Reload the page to go back down. The story cannot restart itself yet.]\&quot;&quot;,
+      &quot;passed&quot;: true
+    },
+    {
       &quot;description&quot;: &quot;not contains \&quot;*** You have killed the wumpus ***\&quot;&quot;,
       &quot;passed&quot;: true
     },
@@ -1425,7 +1452,8 @@ For a moment nothing happens. Then, a long way off, something enormous <span cla
     &quot;contains&quot;: [
       &quot;finds nothing but rock&quot;,
       &quot;stops pretending to be asleep&quot;,
-      &quot;*** The wumpus found you first ***&quot;
+      &quot;*** The wumpus found you first ***&quot;,
+      &quot;[Reload the page to go back down. The story cannot restart itself yet.]&quot;
     ],
     &quot;notContains&quot;: [
       &quot;*** You have killed the wumpus ***&quot;

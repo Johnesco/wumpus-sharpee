@@ -177,6 +177,23 @@ This project uses the [sdlc-baseline](https://github.com/Johnesco/sdlc-baseline)
 
 ### Project-specific deviations
 
+- **TEMPORARY — the reload note on every ending. Remove this when the platform
+  fix ships.** The engine stops at `win` / `lose` / `kill the player`, and every
+  command after that — typed, *and* the client's own File → Restart — goes through
+  `executeTurn`, which throws `Engine is not running`. The player is left getting a
+  raw error on every keystroke with no way back except reloading the page. This is
+  not specific to this game: it reproduces in `hello-chord`, which is already live
+  on IF Hub. The developer is aware and a fix is coming.
+
+  Until then each of the four endings closes with
+  `[Reload the page to go back down. The story cannot restart itself yet.]`,
+  and the tests document asserts it on all four so it cannot be dropped by
+  accident. **When the fix lands:** delete the line from the four ending phrases,
+  delete the four assertions, and check whether `RESTART` after an ending now
+  works — mid-game it already prints "The story restarts.", though it appeared to
+  leave the player in the same room, so the random layout may not be re-rolling.
+  That is worth confirming at the same time.
+
 - **`@sharpee/*` is pinned exactly, and the whole scope is pinned.** 5.3.1 ships
   broken for npm consumers (`ERR_PACKAGE_PATH_NOT_EXPORTED` on `./assertion-core`,
   which kills `sharpee test`). Pinning the nine direct dependencies is not enough —

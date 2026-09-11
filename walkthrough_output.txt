@@ -55,4 +55,6 @@ The cave fills with a sound you will be hearing for the rest of your life. Then 
 
 *** You have killed the wumpus ***
 
+[Reload the page to go back down. The story cannot restart itself yet.]
+
 You have risen to the rank of a Wumpus-Slayer.

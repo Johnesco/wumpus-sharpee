@@ -21,7 +21,7 @@ story
   authors:
     John Googol
   id: wumpus-sharpee
-  story-version: 0.3.0
+  story-version: 0.3.1
   ifid: CDF72E4B-C043-4559-B972-9402939378A6
   description: Twenty-five dark rooms, one wumpus, one bottomless pit, and one arrow.
   prologue:
@@ -916,11 +916,15 @@ define phrases en-US
     you to finish walking into it.
 
     *** You have been eaten by the wumpus ***
+
+    [Reload the page to go back down. The story cannot restart itself yet.]
   swallowed:
     The floor is not floor. It takes your leg to the hip and then the rest of
     you, without hurrying, and without any sound at all.
 
     *** You have fallen into the slime pit ***
+
+    [Reload the page to go back down. The story cannot restart itself yet.]
   kill-wumpus:
     You loose. The arrow goes out along the tunnel, strikes something that is
     not rock, and buries itself.
@@ -930,6 +934,8 @@ define phrases en-US
     cave is only a cave again.
 
     *** You have killed the wumpus ***
+
+    [Reload the page to go back down. The story cannot restart itself yet.]
   woke-it:
     You loose. The arrow goes out along the tunnel and finds nothing but rock,
     and the sound of it goes everywhere at once.
@@ -939,6 +945,8 @@ define phrases en-US
     to be no distance at all.
 
     *** The wumpus found you first ***
+
+    [Reload the page to go back down. The story cannot restart itself yet.]
   shoot-no-bow:
     You would need the bow for that.
   first-blood:

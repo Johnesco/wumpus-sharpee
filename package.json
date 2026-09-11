@@ -1,6 +1,6 @@
 {
   "name": "wumpus-sharpee",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Sixteen dark rooms, one wumpus, one bottomless pit, and three arrows to tell them apart.",
   "private": true,
   "scripts": {
