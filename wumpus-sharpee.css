@@ -1,3 +1,6 @@
-/* An interactive fiction adventure — author stylesheet.
- * Loaded after the platform CSS, so any rule here overrides the defaults.
- * Add your own styles below. */
+/* Author stylesheet, loaded after the engine and theme CSS.
+ *
+ * Nothing here yet. The game asks nothing of the presentation layer: it has no
+ * ASCII art, no fixed-width readouts, and no layout of its own, so the themes
+ * are left to do their own work.
+ */

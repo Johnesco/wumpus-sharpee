@@ -1,50 +1,58 @@
-Cave Mouth
-Daylight gets three steps in and gives up. Behind you, the hillside and the long walk back. Ahead, a throat of cold limestone that smells of wet rock and air that has not been outside in a very long time.
+Shambles
+The passage has been widened, and not by water. The tool marks are gouges, four at a time, and they are at the height of your shoulder.
 
-> read chart
-The chart is a square, four rooms by four, with north at the top:
+Tunnels lead south and west.
 
-Cave Mouth - Font - Flue - Rift
-Bone Shelf - Sump - Crooked Stair - Dry Vault
-Cistern - Weeping Gallery - Throat - Scree Fall
-Bellows - Larder - Drum - Dead Well
+> read note
+Written small, in a hand that got worse toward the bottom:
 
-Every room joins the rooms beside it in its row and the rooms above and below it in its column. Nothing joins on a diagonal. The mouth is the top left corner, and the way out is north from it.
+BLOOD ON THE WALLS MEANS IT IS NEXT DOOR.
+SLIME MEANS THE PIT IS.
+NEITHER ONE TELLS YOU WHICH SIDE. THAT IS THE WHOLE PROBLEM.
 
-Along the bottom, in a different hand and a good deal less carefully:
-BLOOD ON THE WALLS MEANS IT IS NEXT DOOR. SLIME MEANS THE PIT IS.
-NEITHER ONE TELLS YOU WHICH SIDE.
-WORK IT OUT BEFORE YOU SPEND AN ARROW.
+DO NOT WALK INTO EITHER ONE TO BE SURE. YOU WILL BE SURE.
 
-> examine bow
-A short bow, drawn smooth at the grip by somebody else's hands. Three arrows in the quiver.
+STAND IN A ROOM YOU TRUST AND SHOOT ALONG A TUNNEL - SHOOT NORTH, SHOOT SOUTHWEST. THE ARROW KEEPS GOING WHILE THE TUNNEL RUNS STRAIGHT, SO YOU CAN KILL IT FROM FURTHER OFF THAN YOU THINK.
 
-> east
-Font
-A basin worn into the floor, brimful of water so still it reads as glass. Something has been drinking here. The mud at the rim is printed and printed again, always the same shape, always far too wide.
+YOU HAVE ONE ARROW. IF IT DOES NOT FIND HIM, HE FINDS YOU.
 
-> east
-Flue
-A chimney climbs out of the ceiling and narrows to nothing, too tight to follow even if you wanted to. Cold air comes down it in a steady draw, the way breath goes into a body rather than out of one. Blood is smeared along the walls here, dragged and dried and not yours.
+DRAW THE MAP. FIVE ACROSS AND FIVE DOWN, BUT NOT EVERY WALL IS OPEN AND SOME OF THE WAYS THROUGH GO CORNERWISE. WRITE IT DOWN AS YOU GO.
+
+Tunnels lead south and west.
 
 > west
-Font
-A basin worn into the floor, brimful of water so still it reads as glass. Something has been drinking here. The mud at the rim is printed and printed again, always the same shape, always far too wide.
+Dead Well
+A shaft drops straight down through the middle of the floor, ringed by a lip of stone worn smooth by something that uses it. Nothing comes back up out of it. Not even sound.
+
+Tunnels lead north, east, southeast and south.
 
 > south
-Sump
-Standing water over the whole floor, ankle deep and absolutely still. It takes the light off your lantern and returns none of it. Blood is smeared along the walls here, dragged and dried and not yours.
+Rookery
+The ceiling is pocked with hundreds of shallow hollows, each one polished. Nothing lives in them now. Everything that did left at the same time.
 
-> score
-You have scored 0 out of 25, earning you the rank of a Trespasser.
+Tunnels lead north, east and west.
 
-> shoot east
-You loose. The arrow goes out into the black, strikes something that is not rock, and buries itself.
+> west
+Gullet
+The rock closes overhead and the floor tilts down, and for thirty feet you are walking inside something that was shaped by swallowing. Blood is smeared along the walls here, dragged and dried and not yours.
+
+You stop, and look at it properly. The blood on this wall is not old. It is still tacky, it is smeared rather than spattered, and whatever left it here was dragging something heavy and in no hurry about it.
+
+Fresh blood means the wumpus is close - not in this room, but in one of the rooms at the other end of these tunnels. That is all it means. It will never tell you which tunnel, and the slime that marks the pit works exactly the same way.
+
+So do not go and look. Going and looking is how the blood got here.
+
+You have an arrow, and an arrow will go down a tunnel without you. Work the room out from what you have seen, stand somewhere you trust, and SHOOT along the tunnel you want - SHOOT NORTH, SHOOT SOUTHWEST. Keep the map.
+
+You only get the one arrow.
+
+Tunnels lead north and east.
+
+> shoot north
+You loose. The arrow goes out along the tunnel, strikes something that is not rock, and buries itself.
 
 The cave fills with a sound you will be hearing for the rest of your life. Then it stops, and a great deal of weight settles onto the floor, and the cave is only a cave again.
 
 *** You have killed the wumpus ***
-
-You have risen to the rank of a Survivor.
 
 You have risen to the rank of a Wumpus-Slayer.

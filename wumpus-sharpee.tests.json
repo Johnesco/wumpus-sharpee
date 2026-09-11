@@ -13,7 +13,7 @@
           },
           {
             "id": "info.description",
-            "is": "Sixteen dark rooms, one wumpus, one bottomless pit, and three arrows to tell them apart."
+            "is": "Twenty-five dark rooms, one wumpus, one bottomless pit, and one arrow."
           }
         ]
       }
@@ -22,16 +22,17 @@
       "type": "boot",
       "assertions": {
         "contains": [
-          "Cave Mouth",
-          "Daylight gets three steps in and gives up."
+          "Shambles",
+          "The tool marks are gouges, four at a time",
+          "Tunnels lead south and west."
         ],
         "notContains": [
           "Blood is smeared",
           "A grey slime films the rock"
         ],
         "states": [
-          "player.location = Cave Mouth",
-          "wumpus.location = Crooked Stair",
+          "player.location = Shambles",
+          "wumpus.location = Drum",
           "the wumpus is sleeping"
         ]
       },
@@ -41,31 +42,141 @@
           "cards": [
             {
               "type": "turn",
+              "command": "west",
+              "assertions": {
+                "contains": [
+                  "Dead Well",
+                  "Tunnels lead north, east, southeast and south."
+                ],
+                "notContains": [
+                  "Blood is smeared",
+                  "A grey slime films the rock"
+                ]
+              }
+            },
+            {
+              "type": "turn",
               "command": "north",
               "assertions": {
                 "contains": [
-                  "Hillside",
-                  "The wumpus is still in there. It will be in there tomorrow.",
-                  "*** You left the cave alive ***",
-                  "You have risen to the rank of a Survivor."
+                  "Anvil",
+                  "Tunnels lead north, east, south, west and northwest."
+                ],
+                "notContains": [
+                  "Blood is smeared",
+                  "A grey slime films the rock"
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "northwest",
+              "assertions": {
+                "contains": [
+                  "Crooked Stair",
+                  "Tunnels lead north, east, southeast and west."
+                ],
+                "notContains": [
+                  "Blood is smeared",
+                  "A grey slime films the rock"
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "west",
+              "assertions": {
+                "contains": [
+                  "Sump",
+                  "A grey slime films the rock, cold and freshly laid"
+                ],
+                "notContains": [
+                  "Blood is smeared"
+                ],
+                "states": [
+                  "player.location = Sump"
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "northwest",
+              "assertions": {
+                "contains": [
+                  "Cistern",
+                  "It takes your leg to the hip and then the rest of you",
+                  "*** You have fallen into the slime pit ***"
+                ],
+                "notContains": [
+                  "Tunnels lead"
                 ]
               }
             }
           ]
         },
         {
-          "branch": 4,
+          "branch": 5,
           "cards": [
             {
               "type": "turn",
+              "command": "map",
+              "assertions": {
+                "contains": [
+                  "You have not stood here before."
+                ],
+                "notContains": [
+                  "You have been here once already."
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "west",
+              "assertions": {
+                "contains": [
+                  "Dead Well"
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "map",
+              "assertions": {
+                "contains": [
+                  "You have not stood here before."
+                ]
+              }
+            },
+            {
+              "type": "turn",
               "command": "east",
               "assertions": {
                 "contains": [
-                  "Font"
+                  "Shambles"
+                ],
+                "states": [
+                  "player.location = Shambles"
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "map",
+              "assertions": {
+                "contains": [
+                  "You have been here once already."
                 ],
                 "notContains": [
-                  "Blood is smeared",
-                  "A grey slime films"
+                  "You have not stood here before."
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "west",
+              "assertions": {
+                "contains": [
+                  "Dead Well"
                 ]
               }
             },
@@ -74,59 +185,19 @@
               "command": "east",
               "assertions": {
                 "contains": [
-                  "Flue",
-                  "Blood is smeared along the walls here"
+                  "Shambles"
                 ]
               }
             },
             {
               "type": "turn",
-              "command": "east",
+              "command": "map",
               "assertions": {
                 "contains": [
-                  "Rift",
-                  "Pebbles kicked over the edge rattle for a long time"
+                  "enough times to walk it in the dark"
                 ],
                 "notContains": [
-                  "Blood is smeared",
-                  "A grey slime films"
-                ]
-              }
-            },
-            {
-              "type": "turn",
-              "command": "south",
-              "assertions": {
-                "contains": [
-                  "Dry Vault",
-                  "Blood is smeared along the walls here"
-                ],
-                "notContains": [
-                  "A grey slime films"
-                ]
-              }
-            },
-            {
-              "type": "turn",
-              "command": "south",
-              "assertions": {
-                "contains": [
-                  "Scree Fall",
-                  "A grey slime films the rock, cold and freshly laid"
-                ],
-                "notContains": [
-                  "Blood is smeared"
-                ]
-              }
-            },
-            {
-              "type": "turn",
-              "command": "south",
-              "assertions": {
-                "contains": [
-                  "Dead Well",
-                  "It takes your leg to the hip and then the rest of you",
-                  "*** You have fallen into the slime pit ***"
+                  "You have been here once already."
                 ]
               }
             }
@@ -136,58 +207,68 @@
     },
     {
       "type": "turn",
-      "command": "read chart",
+      "command": "read note",
       "assertions": {
         "contains": [
-          "Cave Mouth - Font - Flue - Rift",
-          "Bellows - Larder - Drum - Dead Well",
-          "Nothing joins on a diagonal.",
-          "BLOOD ON THE WALLS MEANS IT IS NEXT DOOR. SLIME MEANS THE PIT IS."
+          "BLOOD ON THE WALLS MEANS IT IS NEXT DOOR.",
+          "NEITHER ONE TELLS YOU WHICH SIDE. THAT IS THE WHOLE PROBLEM.",
+          "YOU HAVE ONE ARROW. IF IT DOES NOT FIND HIM, HE FINDS YOU.",
+          "DRAW THE MAP."
         ]
       }
     },
     {
       "type": "turn",
-      "command": "examine bow",
+      "command": "west",
       "assertions": {
         "contains": [
-          "Three arrows in the quiver."
-        ],
-        "states": [
-          "the bow is three-arrows"
-        ]
-      }
-    },
-    {
-      "type": "turn",
-      "command": "east",
-      "assertions": {
-        "contains": [
-          "Font",
-          "always the same shape, always far too wide."
+          "Dead Well",
+          "Tunnels lead north, east, southeast and south."
         ],
         "notContains": [
           "Blood is smeared",
           "A grey slime films the rock"
         ],
         "states": [
-          "player.location = Font"
+          "player.location = Dead Well"
         ]
       }
     },
     {
       "type": "turn",
-      "command": "east",
+      "command": "south",
       "assertions": {
         "contains": [
-          "Flue",
-          "Blood is smeared along the walls here, dragged and dried and not yours."
+          "Rookery",
+          "Tunnels lead north, east and west."
+        ],
+        "notContains": [
+          "Blood is smeared",
+          "A grey slime films the rock"
+        ],
+        "states": [
+          "player.location = Rookery"
+        ]
+      }
+    },
+    {
+      "type": "turn",
+      "command": "west",
+      "assertions": {
+        "contains": [
+          "Gullet",
+          "Blood is smeared along the walls here, dragged and dried and not yours.",
+          "It is still tacky, it is smeared rather than spattered",
+          "Fresh blood means the wumpus is close - not in this room",
+          "You only get the one arrow.",
+          "Tunnels lead north and east."
         ],
         "notContains": [
           "A grey slime films the rock"
         ],
         "states": [
-          "player.location = Flue"
+          "player.location = Gullet",
+          "story.state = warned"
         ]
       },
       "branches": [
@@ -196,10 +277,10 @@
           "cards": [
             {
               "type": "turn",
-              "command": "south",
+              "command": "north",
               "assertions": {
                 "contains": [
-                  "Crooked Stair",
+                  "Drum",
                   "it is bulk, and it has been waiting for you to finish walking into it.",
                   "*** You have been eaten by the wumpus ***"
                 ]
@@ -212,42 +293,18 @@
           "cards": [
             {
               "type": "turn",
-              "command": "shoot north",
+              "command": "shoot east",
               "assertions": {
                 "contains": [
-                  "The arrow strikes bare rock somewhere past it",
-                  "Something very large shifts its weight, and stops, and listens."
+                  "finds nothing but rock",
+                  "stops pretending to be asleep",
+                  "*** The wumpus found you first ***"
                 ],
                 "notContains": [
                   "*** You have killed the wumpus ***"
                 ],
                 "states": [
-                  "the bow is two-arrows",
-                  "the wumpus is stirring"
-                ]
-              }
-            },
-            {
-              "type": "turn",
-              "command": "examine bow",
-              "assertions": {
-                "contains": [
-                  "Two arrows left."
-                ]
-              }
-            },
-            {
-              "type": "turn",
-              "command": "look",
-              "assertions": {
-                "contains": [
-                  "Flue"
-                ],
-                "notContains": [
-                  "Blood is smeared"
-                ],
-                "states": [
-                  "wumpus.location = Dry Vault"
+                  "the wumpus is sleeping"
                 ]
               }
             }
@@ -257,45 +314,7 @@
     },
     {
       "type": "turn",
-      "command": "west",
-      "assertions": {
-        "contains": [
-          "Font"
-        ],
-        "notContains": [
-          "Blood is smeared"
-        ],
-        "states": [
-          "player.location = Font"
-        ]
-      }
-    },
-    {
-      "type": "turn",
-      "command": "south",
-      "assertions": {
-        "contains": [
-          "Sump",
-          "Blood is smeared along the walls here, dragged and dried and not yours."
-        ],
-        "states": [
-          "player.location = Sump",
-          "the wumpus is sleeping"
-        ]
-      }
-    },
-    {
-      "type": "turn",
-      "command": "score",
-      "assertions": {
-        "contains": [
-          "You have scored 0 out of 25, earning you the rank of a Trespasser."
-        ]
-      }
-    },
-    {
-      "type": "turn",
-      "command": "shoot east",
+      "command": "shoot north",
       "assertions": {
         "contains": [
           "strikes something that is not rock, and buries itself.",

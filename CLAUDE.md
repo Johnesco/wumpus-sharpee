@@ -15,19 +15,22 @@
 
 ## Project Context
 
-A text treatment of the 1973 BASIC game. Sixteen rooms on a four-by-four grid
-hold one wumpus and one bottomless slime pit. Rooms next to the wumpus show
-blood; rooms next to the pit show slime; some show both. The player is a broke
-hunter with a bow, three arrows, and a chart of the cave, and the whole game is
-one deduction: work out which room holds the wumpus from warnings that never say
-which side they came from, then stand next to it and shoot the right way.
+A text treatment of the 1973 BASIC game. Twenty-five rooms on a cut five-by-five
+lattice hold one wumpus and one bottomless slime pit. Rooms next to the wumpus
+show blood; rooms next to the pit show slime; some show both. The player wakes
+somewhere in the middle of it with one arrow and no way out, and the whole game
+is one deduction: work out which room holds the wumpus from warnings that never
+say which side they came from, then stand somewhere safe and shoot down the right
+tunnel.
 
-The design goal is that the player never needs to enter a dangerous room to win,
-and never has to draw a map — the chart is given, so the difficulty is inference,
-not cartography.
+The player never needs to enter a dangerous room to win — that is checked, not
+hoped for (see `docs/cave-map.md`). There is no escape ending: the goal is the
+kill, and the only other endings are the three ways of dying.
 
 ## Design Documents
 
+- `docs/cave-map.md` — the map, and the four properties a cave has to have here
+  for the game to be winnable by deduction. Read it before touching the topology.
 - `docs/spike-findings.md` — what the language does and does not do for this
   game, proved by compiling and playing it rather than by reading docs. Read it
   before changing the shooting actions or the start block.
@@ -41,7 +44,8 @@ The story file is the rest of the design record.
   room on purpose: they are a signal the player learns, not a mood. Never vary
   them for flavour.
 - Never say which direction a warning came from. The ambiguity is the puzzle.
-- Room descriptions do not list exits — the chart carries the topology.
+- Room descriptions do not list exits. The tunnel list is a separate line, put
+  there by the header daemon, so it reads as a menu rather than as prose.
 - Concrete nouns, no adjective stacks. The cave is unpleasant because of what is
   in it, not because the prose says it is unpleasant.
 
@@ -80,36 +84,66 @@ Built output at the root (`play.html`, `game.js`, `*.css`, `lib/`, `tests.html`,
   conditional `win` needs its own guard or its text prints after the ending. The
   shooting actions set the wumpus to `shot` and key both the win and the miss off
   that state. See `docs/spike-findings.md`.
-- **Hazards never start in the entrance or next to it.** Every arm of the start
-  block keeps the wumpus and the pit at least two rooms from the Cave Mouth, so the
-  opening room is always clear of blood and slime.
-- **A miss moves the wumpus.** It invalidates the player's deductions, which is
-  what makes an arrow expensive. Inherited from the original.
-- **The player is given the map.** A cave chart in the inventory lists all sixteen
-  rooms and the grid. Drawing the map is not the interesting part.
+- **You wake deep in the cave and there is no way out.** The goal is the kill,
+  so there is no entrance, no escape ending, and no reward for leaving. The start
+  room is drawn at random from the layout and is always clear of both hazards and
+  both warnings, and at least three rooms from the wumpus.
+- **One arrow, and a miss is fatal.** Any shot that does not find the wumpus wakes
+  it and it finds you — including a shot into solid rock, which needs no special
+  case and costs no extra conditions. This is deliberately the harshest version of
+  the rule; it is why the tunnel list has to be legible.
+- **Arrows fly straight on while the tunnel does.** A shot can cross up to four
+  rooms down a gallery, so sight-lines are a second thing to work out and a
+  wumpus can be killed from further off than its neighbours. The room list in each
+  `change the wumpus to shot` line is that flight path.
+- **There is no map in the game, and `MAP` is not a map.** The cave is drawn on
+  paper by the player, from the tunnel list printed every turn. `MAP` (also
+  `REMEMBER`, `RECALL`, `THINK`) instead stirs what the hunter knows about the
+  room they are standing in — first time here, been here once, been here often
+  enough to walk it in the dark. It is orientation, not cartography, and it never
+  tells the player anything they did not earn.
+- **The whole game is Chord. No TypeScript.** An auto-drawing ASCII map was built
+  as a text hatch and then removed when the design changed; `docs/spike-findings.md`
+  keeps what was learned. Nothing in the game now needs computed text, so nothing
+  reaches for a hatch — which is the upstream rule anyway: if the language can say
+  it, a hatch is misuse.
+- **The first blood is taught, once.** The moment the player stands in a room
+  with blood, a one-shot passage explains what fresh blood means, that it never
+  says which tunnel, and that the answer is to shoot rather than to go and look.
+  It is latched on a story state (`searching` -> `warned`) so it can never repeat.
+- **`move the hunter`, never `move the player`, in the start block.** The latter
+  is gate-clean and does nothing, which puts the player in whatever room
+  `starts in` named while the hazards move around them. See
+  `docs/spike-findings.md`.
 
 ## Current Feature Status
 
 ### Implemented
-- [x] 16-room grid cave, plus the Hillside (the way out)
-- [x] Randomised hazard placement, 8 hand-paired layouts
+- [x] 25-room cave: a 5x5 lattice with 11 tunnels cut and 6 diagonal shafts added
+- [x] Machine-checked topology — connected, degree 2-5, unique warning signatures,
+      every legal layout winnable without entering a hazard
+- [x] Randomised wumpus, pit and start room over 10 layouts
 - [x] Blood and slime warnings, undirected, both can appear in one room
 - [x] Death by wumpus and death by pit
-- [x] Directional shooting (north/south/east/west), 48 map squares
-- [x] Three arrows; a miss wakes the wumpus a stage and relocates it
-- [x] The hunt: 8 turns after it starts hunting, it runs you down
-- [x] Five endings: kill, eaten, pit, run down, walked out alive
-- [x] Scoring with three ranks
-- [x] Cave chart (in-game, readable)
+- [x] Shooting in all 8 compass directions, 74 firing positions
+- [x] Crooked arrows — a shot carries on while the tunnel runs straight, up to 4 rooms
+- [x] One arrow; any miss is fatal
+- [x] Four endings: kill, eaten, pit, woke it
+- [x] Tunnel list every turn, on its own line
+- [x] Prologue, and a hunter's note carrying the rules (but not the map)
+- [x] `MAP` / `REMEMBER` / `RECALL` — how well you know the room you are in,
+      over a three-rung familiarity ladder per room
+- [x] One-shot first-blood tutorial
 
 ### Planned
-- [ ] Printable chart feelie in `feelies/` — blocked: the hub's Pages workflow
+- [ ] Printable blank 5x5 grid feelie to map on — blocked: the hub's Pages workflow
       copies `web lib assets audio sfx src` plus root files by extension, so a
       `feelies/` folder does not deploy today
-- [ ] Superbats (`move the player to a random adjacent room`)
+- [ ] Superbats (`move the hunter to a random adjacent room`)
 - [ ] A lantern on a burn clock, to cost the player something for wandering
 - [ ] Sound (`assets/sfx/`) — blocked on the hub's flat-media gap
-- [ ] More layouts, or a larger cave
+- [ ] A second pit, if playtesting says the cave is too safe
+- [ ] A first-slime tutorial to match the first-blood one, if it reads as missing
 
 ## Working in this project
 
@@ -166,4 +200,20 @@ ADRs live in `docs/adr/` once the first one exists (index: `docs/adr/README.md`)
 - 2026-09-10: Spiked the mechanics on a throwaway 2x2 cave, then built the full
   game — 16 rooms, randomised hazards, four shooting actions, five endings.
   Story 0.1.0, 21 cards / 70 assertions across 5 lines, gate-clean and built.
-  Not yet played in a browser; not yet shipped.
+- 2026-09-11: **Story 0.3.0.** Rebuilt the cave and the rules around three
+  decisions: the grid was too easy to solve, the escape ending was competing with
+  the actual goal, and a new player was given no way in.
+  - The cave is now 25 rooms on a 5x5 lattice with 11 tunnels cut and 6 diagonal
+    shafts added, checked by machine for connectivity, degree, unique warning
+    signatures and winnability (`docs/cave-map.md`).
+  - You wake deep in it, in a random clear room, with no way out and one arrow.
+    A miss is fatal; arrows fly straight on while the tunnel does.
+  - The tunnel list prints every turn, on its own line.
+  - The first time you find blood, a one-shot passage explains what it means and
+    that the answer is to shoot rather than to go and look.
+  - `MAP` recalls how well you know the room you are standing in. An auto-drawing
+    ASCII map was built first, as a TypeScript hatch, and removed when the design
+    changed — the findings are kept in `docs/spike-findings.md`. The game is pure
+    Chord again.
+  - 22 cards / 77 assertions across 5 lines. Gate-clean, built, played in a
+    browser. Not yet shipped to the hub.

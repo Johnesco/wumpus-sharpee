@@ -34,8 +34,14 @@ Three arrows. A miss wastes one, wakes the wumpus a little, and moves it somewhe
 else, which is worse than losing the arrow. Wake it all the way and it comes
 looking for you.
 
-You carry a chart of the cave — `READ CHART`. You can also give up and walk out
-north from the Cave Mouth, which counts for something, but not for much.
+`MAP` does not draw you a map — nobody down here has one. It stirs what you know
+about the room you are standing in: whether this is the first time, whether you
+have been through once already, or whether you have crossed it often enough to
+walk it in the dark. The cave itself is yours to draw, from the tunnel list that
+prints every turn. `READ NOTE` has the rules.
+
+The first time you find blood, the game stops and explains what it means. After
+that you are on your own.
 
 ## Walkthrough
 

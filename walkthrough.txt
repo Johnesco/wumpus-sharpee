@@ -1,8 +1,5 @@
-read chart
-examine bow
-east
-east
+read note
 west
 south
-score
-shoot east
+west
+shoot north
