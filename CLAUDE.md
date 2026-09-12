@@ -177,6 +177,28 @@ This project uses the [sdlc-baseline](https://github.com/Johnesco/sdlc-baseline)
 
 ### Project-specific deviations
 
+- **TEMPORARY — `scripts/fix-sharpee-exports.mjs`, run on `postinstall`. Delete
+  it when upstream fixes the publish; the script tells you when that is.**
+  `@sharpee/*` packages publish with their `exports` map flattened to `"."`
+  alone. The subpath modules are in the tarball — `transcript-tester/assertion-core.js`
+  is right there — but Node will not resolve what the map does not name. The
+  flattening is old and was harmless until ADR-340 (upstream #383, still open)
+  made `branch-tester` require `transcript-tester/assertion-core`, at which point
+  `sharpee test` began dying with *"Package subpath './assertion-core' is not
+  defined by exports"* and `tools/build.py` exiting 1 behind it. Present in 5.3.1,
+  5.3.2 and 5.4.0; 5.3.0 has the same flattened map and only escapes because
+  nothing reached across a subpath yet. Upstream #387 — "install from npm on a
+  clean machine and ship a story to a played ending" — is the gate that would
+  catch this, and it is also still open.
+
+  The shim re-opens the subpaths on the installed copies, which exposes only
+  files each package already ships. It is a `postinstall` hook rather than
+  `patch-package` for two reasons: no new dependency for a bug that should be
+  short-lived, and it is self-erasing — on the first install after a corrected
+  release it finds nothing to patch and prints the removal steps instead.
+  **When that message appears:** delete the script, drop `postinstall` from
+  `package.json`, and delete this entry.
+
 - **TEMPORARY — the reload note on every ending. Remove this when the platform
   fix ships.** The engine stops at `win` / `lose` / `kill the player`, and every
   command after that — typed, *and* the client's own File → Restart — goes through
