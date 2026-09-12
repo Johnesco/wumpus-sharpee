@@ -177,50 +177,12 @@ This project uses the [sdlc-baseline](https://github.com/Johnesco/sdlc-baseline)
 
 ### Project-specific deviations
 
-- **TEMPORARY — `scripts/fix-sharpee-exports.mjs`, run on `postinstall`. Delete
-  it when upstream fixes the publish; the script tells you when that is.**
-  `@sharpee/*` packages publish with their `exports` map flattened to `"."`
-  alone. The subpath modules are in the tarball — `transcript-tester/assertion-core.js`
-  is right there — but Node will not resolve what the map does not name. The
-  flattening is old and was harmless until ADR-340 (upstream #383, still open)
-  made `branch-tester` require `transcript-tester/assertion-core`, at which point
-  `sharpee test` began dying with *"Package subpath './assertion-core' is not
-  defined by exports"* and `tools/build.py` exiting 1 behind it. Present in 5.3.1,
-  5.3.2 and 5.4.0; 5.3.0 has the same flattened map and only escapes because
-  nothing reached across a subpath yet. Upstream #387 — "install from npm on a
-  clean machine and ship a story to a played ending" — is the gate that would
-  catch this, and it is also still open.
-
-  The shim re-opens the subpaths on the installed copies, which exposes only
-  files each package already ships. It is a `postinstall` hook rather than
-  `patch-package` for two reasons: no new dependency for a bug that should be
-  short-lived, and it is self-erasing — on the first install after a corrected
-  release it finds nothing to patch and prints the removal steps instead.
-  **When that message appears:** delete the script, drop `postinstall` from
-  `package.json`, and delete this entry.
-
-- **TEMPORARY — the reload note on every ending. Remove this when the platform
-  fix ships.** The engine stops at `win` / `lose` / `kill the player`, and every
-  command after that — typed, *and* the client's own File → Restart — goes through
-  `executeTurn`, which throws `Engine is not running`. The player is left getting a
-  raw error on every keystroke with no way back except reloading the page. This is
-  not specific to this game: it reproduces in `hello-chord`, which is already live
-  on IF Hub. The developer is aware and a fix is coming.
-
-  Until then each of the four endings closes with
-  `[Reload the page to go back down. The story cannot restart itself yet.]`,
-  and the tests document asserts it on all four so it cannot be dropped by
-  accident. **When the fix lands:** delete the line from the four ending phrases,
-  delete the four assertions, and check whether `RESTART` after an ending now
-  works — mid-game it already prints "The story restarts.", though it appeared to
-  leave the player in the same room, so the random layout may not be re-rolling.
-  That is worth confirming at the same time.
-
-- **`@sharpee/*` is pinned exactly, and the whole scope is pinned.** 5.3.1 ships
-  broken for npm consumers (`ERR_PACKAGE_PATH_NOT_EXPORTED` on `./assertion-core`,
-  which kills `sharpee test`). Pinning the nine direct dependencies is not enough —
-  25 transitive `@sharpee/*` packages still resolve to 5.3.1 — so `package.json`
-  carries an `overrides` block covering all 34. Drop it when a fixed release lands.
+- **`@sharpee/*` is pinned exactly, and the whole scope is pinned** with an npm
+  `overrides` block covering every package. This started as a defence against
+  a release that shipped broken for npm consumers and which plain `^` ranges pulled
+  in through transitive dependencies even when the direct pins were correct. Keep
+  the pinning: version drift between games is expected here, and each game bumps
+  deliberately.
 - **Watch for `walkthrough.coverage.json`.** If that marker file ever appears at
   the repo root, delete it before building. It tells `tools/build.py` to keep a
   room-sweeping walkthrough instead of deriving one from the tests document, and a
@@ -239,6 +201,17 @@ ADRs live in `docs/adr/` once the first one exists (index: `docs/adr/README.md`)
 - 2026-09-10: Spiked the mechanics on a throwaway 2x2 cave, then built the full
   game — 16 rooms, randomised hazards, four shooting actions, five endings.
   Story 0.1.0, 21 cards / 70 assertions across 5 lines, gate-clean and built.
+- 2026-09-12: **Story 0.3.2 — recompiled on the current toolchain.** The two
+  temporary workarounds taken on 2026-09-11 are both gone, because the release
+  fixed what they stood in for:
+  `RESTART` works after an ending again (and yields a genuinely fresh game, new
+  layout and all), so the reload note is off the four endings; and the published
+  `exports` maps name their subpaths, so `scripts/fix-sharpee-exports.mjs` and its
+  `postinstall` hook are deleted — verified by a wiped `node_modules` and a clean
+  `npm ci` with no shim at all. Also fixed a real bug the recompile exposed: the
+  hunter's note told the player to SHOOT SOUTHWEST, a direction no tunnel in the
+  cave uses, so it never parsed. The note's example directions are now derived
+  from the map and cannot drift from it again.
 - 2026-09-11: **Story 0.3.0.** Rebuilt the cave and the rules around three
   decisions: the grid was too easy to solve, the escape ending was competing with
   the actual goal, and a new player was given no way in.

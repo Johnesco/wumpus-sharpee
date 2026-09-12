@@ -12,7 +12,7 @@ NEITHER ONE TELLS YOU WHICH SIDE. THAT IS THE WHOLE PROBLEM.
 
 DO NOT WALK INTO EITHER ONE TO BE SURE. YOU WILL BE SURE.
 
-STAND IN A ROOM YOU TRUST AND SHOOT ALONG A TUNNEL - SHOOT NORTH, SHOOT SOUTHWEST. THE ARROW KEEPS GOING WHILE THE TUNNEL RUNS STRAIGHT, SO YOU CAN KILL IT FROM FURTHER OFF THAN YOU THINK.
+STAND IN A ROOM YOU TRUST AND SHOOT ALONG A TUNNEL - SHOOT NORTH, SHOOT SOUTHEAST. AN ARROW ONLY GOES WHERE A TUNNEL GOES, AND IT KEEPS GOING WHILE THE TUNNEL RUNS STRAIGHT, SO YOU CAN KILL IT FROM FURTHER OFF THAN YOU THINK.
 
 YOU HAVE ONE ARROW. IF IT DOES NOT FIND HIM, HE FINDS YOU.
 
@@ -54,7 +54,5 @@ You loose. The arrow goes out along the tunnel, strikes something that is not ro
 The cave fills with a sound you will be hearing for the rest of your life. Then it stops, and a great deal of weight settles onto the floor, and the cave is only a cave again.
 
 *** You have killed the wumpus ***
-
-[Reload the page to go back down. The story cannot restart itself yet.]
 
 You have risen to the rank of a Wumpus-Slayer.

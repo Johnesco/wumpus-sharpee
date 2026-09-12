@@ -105,8 +105,7 @@
                 "contains": [
                   "Cistern",
                   "It takes your leg to the hip and then the rest of you",
-                  "*** You have fallen into the slime pit ***",
-                  "[Reload the page to go back down. The story cannot restart itself yet.]"
+                  "*** You have fallen into the slime pit ***"
                 ],
                 "notContains": [
                   "Tunnels lead"
@@ -283,8 +282,7 @@
                 "contains": [
                   "Drum",
                   "it is bulk, and it has been waiting for you to finish walking into it.",
-                  "*** You have been eaten by the wumpus ***",
-                  "[Reload the page to go back down. The story cannot restart itself yet.]"
+                  "*** You have been eaten by the wumpus ***"
                 ]
               }
             }
@@ -300,8 +298,7 @@
                 "contains": [
                   "finds nothing but rock",
                   "stops pretending to be asleep",
-                  "*** The wumpus found you first ***",
-                  "[Reload the page to go back down. The story cannot restart itself yet.]"
+                  "*** The wumpus found you first ***"
                 ],
                 "notContains": [
                   "*** You have killed the wumpus ***"
@@ -322,8 +319,7 @@
         "contains": [
           "strikes something that is not rock, and buries itself.",
           "*** You have killed the wumpus ***",
-          "You have risen to the rank of a Wumpus-Slayer.",
-          "[Reload the page to go back down. The story cannot restart itself yet.]"
+          "You have risen to the rank of a Wumpus-Slayer."
         ],
         "states": [
           "the wumpus is shot"
