@@ -1,0 +1,127 @@
+# Hunt the Wumpus -- how to hunt
+#
+# Your cave is not this cave. The wumpus, the pit and the room you wake in are
+# drawn fresh for every game, so the five moves at the end will not be your five
+# moves. What carries over is the method. The worked hunt is there so you can
+# watch the method being used once; the transcript beside it is that same game.
+
+You wake somewhere in the middle of twenty-five rooms with one arrow and no way
+out. Somewhere down here is the wumpus. Somewhere else is a pit that has no
+bottom worth measuring. You cannot see either of them coming, and walking into
+either one ends the game on the spot.
+
+You are not exploring. You are collecting evidence.
+
+## Reading the walls -- the only two things the cave tells you
+
+Every room reports itself as you enter it, and two of those reports are the
+entire game:
+
+Blood on the walls means the wumpus is **next door** -- in one of the rooms at
+the far end of this room's tunnels. Not in this room. If it were in this room
+you would already know.
+
+Grey slime means the pit is next door, on exactly the same terms.
+
+A room can show both. A room can show neither, and that is evidence too --
+possibly the best evidence you will get.
+
+What neither one ever tells you is **which** tunnel. That is the whole problem,
+and no amount of staring at the walls will fix it. The answer comes from
+standing somewhere else and comparing.
+
+## The one rule -- never walk in to check
+
+The temptation, every single time, is to step into the suspect room and settle
+it. Do not. There is no "check" in this game: entering the wumpus's room is
+being eaten, and entering the pit is falling into it. You find out by being
+right, not by looking.
+
+Anything you want to know, you can work out from rooms you have already survived.
+
+## Working it out -- how the deduction actually goes
+
+Three facts do all the work.
+
+A room you have stood in is **proven safe**. It holds neither hazard. You can
+walk back through it as often as you like.
+
+A room with blood tells you the wumpus is in one of *its* neighbours -- usually
+two to five candidates. That is your suspect list.
+
+A clean room is the strong move. No blood means the wumpus is in **none** of
+that room's neighbours, which crosses several rooms off at once. Hunters lose
+because they only pay attention to the rooms that frighten them.
+
+So: find blood, then go and stand somewhere that shares only *part* of that
+room's neighbourhood. Whatever both readings agree on is where it is. Two
+readings usually settle it. Three always have, in my experience.
+
+Use the tunnel list at the bottom of every room to draw the cave on paper as you
+go. Five across and five down, but not every wall is open and some of the ways
+through go cornerwise, so the shape will surprise you. If you lose your bearings:
+
+# MAP does not draw you a map -- nobody down here has one. It tells you how well
+# you know the room you are standing in: first time, been here once, or been
+# through often enough to walk it in the dark.
+
+## Taking the shot -- you get one
+
+An arrow goes down a tunnel without you, which is the only reason any of this is
+survivable. Stand in a room you trust and shoot along the tunnel you want:
+SHOOT NORTH, SHOOT SOUTHEAST.
+
+An arrow only goes where a tunnel goes, and it keeps going while the tunnel runs
+straight -- up to four rooms down a long gallery. So you do not have to be next
+door to kill it. Sight-lines are worth as much as adjacency, and they are worth
+working out before you need them.
+
+You have one arrow. If it does not find him, he finds you. There is no second
+attempt and no walking away.
+
+## A hunt, worked through -- one real game, start to finish
+
+What follows is a complete hunt. In this cave the wumpus was in the Drum and the
+pit was in the Cistern, and I woke in the Shambles -- yours will differ.
+
+Read the note first. It is the rules, in the hand of somebody who did not make
+it out, and it costs nothing.
+
+> read note
+
+Now move. The Shambles was clean -- no blood, no slime -- so both hazards are at
+least two rooms away, and both tunnels out are safe to take.
+
+> west
+
+The Dead Well: clean again. Four tunnels, and every one of its neighbours is now
+ruled out. Keep going.
+
+> south
+
+The Rookery: clean. Three more rooms crossed off, and note that the Gullet is one
+of them -- the Rookery being clean proves the Gullet holds nothing. That will
+matter in about ten seconds.
+
+> west
+
+The Gullet, and blood on the walls. The wumpus is in one of the Gullet's
+neighbours, and the Gullet has exactly two: the Rookery and the Drum. I walked
+out of the Rookery thirty seconds ago, so it is not that.
+
+There is only one room left it can be. I never went and looked.
+
+> shoot north
+
+## Ways this ends -- four of them, and only one is good
+
+You kill it. The arrow finds something that is not rock, and the cave becomes
+just a cave.
+
+It eats you. You walked into its room, which is what blood on the walls was
+trying to prevent.
+
+The pit takes you. Same mistake, quieter ending.
+
+It finds you first. You spent the arrow on the wrong room, and the sound of it
+striking bare rock told the wumpus exactly where you were standing.

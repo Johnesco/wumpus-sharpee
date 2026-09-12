@@ -135,6 +135,12 @@ Built output at the root (`play.html`, `game.js`, `*.css`, `lib/`, `tests.html`,
       over a three-rung familiarity ladder per room
 - [x] One-shot first-blood tutorial
 
+- [x] `walkthrough-guide.txt` — the hub's Commands tab. Written as a strategy
+      guide, not a command list, because the cave is randomised and a list of
+      moves is wrong for every player but one. Its `> command` lines mirror
+      `walkthrough.txt` exactly so the hub can still pair them with the
+      transcript — **keep them in step if either file changes.**
+
 ### Planned
 - [ ] Printable blank 5x5 grid feelie to map on — blocked: the hub's Pages workflow
       copies `web lib assets audio sfx src` plus root files by extension, so a
