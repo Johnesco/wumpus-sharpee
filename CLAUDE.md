@@ -207,6 +207,15 @@ ADRs live in `docs/adr/` once the first one exists (index: `docs/adr/README.md`)
 - 2026-09-10: Spiked the mechanics on a throwaway 2x2 cave, then built the full
   game — 16 rooms, randomised hazards, four shooting actions, five endings.
   Story 0.1.0, 21 cards / 70 assertions across 5 lines, gate-clean and built.
+- 2026-09-15: **Shipped.** Live at https://johnesco.github.io/wumpus-sharpee/play.html
+  and listed on the hub. The publish did not go cleanly: `ship.py` printed
+  `=== shipped ===` while the game push had failed, because `publish.py` gates
+  first-run setup on a `.git` directory being absent and this repo had been
+  `git init`-ed ten commits earlier to keep the work versioned. It pushed the hub
+  registry anyway, so the live hub briefly carried a card pointing at a 404.
+  Recovered by hand: `gh repo create --source=. --push`, Pages set to
+  `build_type: workflow`, and a re-run of the first deploy (which fires before
+  Pages is configured and always fails). Filed as Johnesco/ifhub#101.
 - 2026-09-12: **Story 0.3.2 — recompiled on the current toolchain.** The two
   temporary workarounds taken on 2026-09-11 are both gone, because the release
   fixed what they stood in for:
