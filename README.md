@@ -1,6 +1,6 @@
 # Hunt the Wumpus
 
-Sixteen dark rooms, one wumpus, one bottomless pit, and three arrows to tell them apart.
+Twenty-five dark rooms, one wumpus, one bottomless pit, and one arrow.
 
 Play it on IF Hub: https://johnesco.github.io/ifhub/app.html?game=wumpus-sharpee
 
@@ -19,20 +19,26 @@ python C:/code/ifhub/tools/ship.py wumpus-sharpee  # publish and list on IF Hub
 
 ## How it plays
 
-The cave is a four-by-four grid, sixteen rooms, no diagonals. Somewhere in it are
-a wumpus and a bottomless slime pit, in different rooms, placed fresh each game.
+You wake deep in a cave, in a quiet room well away from the wumpus, with no way
+out and one arrow on the string. The cave is a five-by-five grid of twenty-five
+rooms, but eleven of its tunnels have fallen in and six diagonal shafts have been
+cut through, so no room is where its place on the grid says it should be.
+Somewhere in it are a wumpus and a bottomless slime pit, in different rooms,
+placed fresh each game.
 
 - A room **next to** the wumpus has blood on the walls.
 - A room **next to** the pit has slime on the walls.
-- A room can have both, and neither warning tells you which side it came from.
+- A room can have both, and neither warning tells you which tunnel it came from.
 
-Walk into the wumpus and it eats you. Walk into the pit and you go down it. So you
-never want to enter either one — you want to stand **next to** the wumpus and
-`SHOOT NORTH` (or south, east, west) into the room you think it is in.
+Walk into the wumpus and it eats you. Walk into the pit and you go down it. You
+never have to enter either one to win: every layout is checked to be winnable
+without ever setting foot in either. Stand somewhere safe and `SHOOT` down the
+tunnel you think leads to it — `SHOOT EAST`, `SHOOT NORTHWEST`, whichever way the
+tunnel runs.
 
-Three arrows. A miss wastes one, wakes the wumpus a little, and moves it somewhere
-else, which is worse than losing the arrow. Wake it all the way and it comes
-looking for you.
+One arrow. It flies straight on for as long as the tunnel does, up to four rooms
+down a gallery, so a wumpus can be shot from further off than its neighbours. A
+shot that does not find it wakes it, and it finds you.
 
 `MAP` does not draw you a map — nobody down here has one. It stirs what you know
 about the room you are standing in: whether this is the first time, whether you

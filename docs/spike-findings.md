@@ -58,6 +58,10 @@ dependencies to 5.3.0 is **not** enough — 25 transitive `@sharpee/*` packages
 still resolve to 5.3.1. This project pins the whole scope with an npm
 `overrides` block.
 
+**Resolved 2026-09-12.** 5.4.1 publishes its subpath exports again, and the
+temporary shim this project carried for it is gone. The `overrides` block stays,
+as deliberate whole-scope pinning.
+
 ---
 
 # Second pass — the irregular cave (2026-09-11)
@@ -69,7 +73,7 @@ Found while rebuilding the game as 25 rooms on a cut lattice.
 | Diagonal exits (`northeast to the Sump`) | Work. The direction set is eight compass points plus up and down, so a lattice can carry corner-wise shafts. |
 | `prologue:` in the story header | Exists, and takes multi-line prose with blank-line paragraph breaks. The terminal client does not print it; the browser client does. |
 | `phrase detail` with no `while` | Refused — `analysis.detail-unconditional`: *"unconditional detail belongs in the description."* |
-| Multi-word entity heads in tests `states` | Never match. `wumpus.location = Drum` passes; `slime pit.location = Cistern` fails silently because the head is two words. |
+| Multi-word entity heads in tests `states` | Never match. `wumpus.location = Drum` passes; `slime pit.location = Cistern` fails silently because the head is two words. At 5.4.1 the failure is loud (*Could not parse expression*) and a one-word alias works as the head; see the workspace's `reference/tests-document.md`. |
 
 ## `move the player` is a silent no-op in the start block
 
@@ -97,6 +101,10 @@ before the game starts
 
 `the player` presumably is not bound yet at that point in the boot. Nothing
 warns; the story simply starts in the wrong room.
+
+**Changed at 5.4.1.** The same line now stops the story loading — `Error loading
+story: No player entity exists yet.` — which settles the guess above: `the player`
+is not bound until the start block has run. It is still gate-clean. (2026-09-16)
 
 ## A `detail` cannot carry a line break
 

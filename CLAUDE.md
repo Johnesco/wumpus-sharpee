@@ -7,7 +7,7 @@
 ## Project Identity
 
 **Name:** Hunt the Wumpus
-**Purpose:** Sixteen dark rooms, one wumpus, one bottomless pit, and three arrows to tell them apart.
+**Purpose:** Twenty-five dark rooms, one wumpus, one bottomless pit, and one arrow.
 **Engine:** Sharpee, written in Chord (`wumpus-sharpee.story`)
 **Repository:** https://github.com/Johnesco/wumpus-sharpee
 **Live:** https://johnesco.github.io/ifhub/app.html?game=wumpus-sharpee
@@ -125,7 +125,8 @@ Built output at the root (`play.html`, `game.js`, `*.css`, `lib/`, `tests.html`,
 - [x] Randomised wumpus, pit and start room over 10 layouts
 - [x] Blood and slime warnings, undirected, both can appear in one room
 - [x] Death by wumpus and death by pit
-- [x] Shooting in all 8 compass directions, 74 firing positions
+- [x] Shooting down any tunnel, in the six directions the cave's tunnels run
+      (north, south, east, west, northwest, southeast), 74 firing positions
 - [x] Crooked arrows — a shot carries on while the tunnel runs straight, up to 4 rooms
 - [x] One arrow; any miss is fatal
 - [x] Four endings: kill, eaten, pit, woke it
@@ -147,7 +148,9 @@ Built output at the root (`play.html`, `game.js`, `*.css`, `lib/`, `tests.html`,
       `feelies/` folder does not deploy today
 - [ ] Superbats (`move the hunter to a random adjacent room`)
 - [ ] A lantern on a burn clock, to cost the player something for wandering
-- [ ] Sound (`assets/sfx/`) — blocked on the hub's flat-media gap
+- [ ] Sound (`assets/sfx/`) — not blocked: a Chord build lays `sfx/` out as a
+      folder beside the page, which the hub deploys (Fever Dream's sounds are
+      live). Needs the sounds.
 - [ ] A second pit, if playtesting says the cave is too safe
 - [ ] A first-slime tutorial to match the first-blood one, if it reads as missing
 
@@ -192,8 +195,9 @@ This project uses the [sdlc-baseline](https://github.com/Johnesco/sdlc-baseline)
 - **Watch for `walkthrough.coverage.json`.** If that marker file ever appears at
   the repo root, delete it before building. It tells `tools/build.py` to keep a
   room-sweeping walkthrough instead of deriving one from the tests document, and a
-  room sweep cannot survive this game: two of the sixteen rooms kill you, so every
-  command after the first lethal room records `Error: Engine is not running`.
+  room sweep cannot survive this game: two of the twenty-five rooms kill you, and
+  every command after the first lethal room records the engine's *game has
+  ended* error instead of prose.
   `walkthrough.txt` must stay the tests document's main line.
 
 ### Architecture Decisions
@@ -203,10 +207,12 @@ ADRs live in `docs/adr/` once the first one exists (index: `docs/adr/README.md`)
 ## Project History
 
 ### Recent Changes
-- 2026-09-10: Scaffolded with `tools/new_game.py` (`sharpee init`, templates, sdlc-baseline GitHub templates).
-- 2026-09-10: Spiked the mechanics on a throwaway 2x2 cave, then built the full
-  game — 16 rooms, randomised hazards, four shooting actions, five endings.
-  Story 0.1.0, 21 cards / 70 assertions across 5 lines, gate-clean and built.
+- 2026-09-16: **Docs caught up with the game.** The README and the purpose line
+  still described the sixteen-room, three-arrow draft; the implemented list claimed
+  shooting in eight directions where the cave's tunnels run in six; the walkthrough
+  note quoted an error the engine no longer prints; and sound was listed as blocked
+  on a hub gap that does not block it. `docs/spike-findings.md` now marks the two
+  findings the current engine changed.
 - 2026-09-15: **Shipped.** Live at https://johnesco.github.io/wumpus-sharpee/play.html
   and listed on the hub. The publish did not go cleanly: `ship.py` printed
   `=== shipped ===` while the game push had failed, because `publish.py` gates
@@ -244,3 +250,7 @@ ADRs live in `docs/adr/` once the first one exists (index: `docs/adr/README.md`)
     Chord again.
   - 22 cards / 77 assertions across 5 lines. Gate-clean, built, played in a
     browser. Not yet shipped to the hub.
+- 2026-09-10: Spiked the mechanics on a throwaway 2x2 cave, then built the full
+  game — 16 rooms, randomised hazards, four shooting actions, five endings.
+  Story 0.1.0, 21 cards / 70 assertions across 5 lines, gate-clean and built.
+- 2026-09-10: Scaffolded with `tools/new_game.py` (`sharpee init`, templates, sdlc-baseline GitHub templates).
