@@ -309,6 +309,55 @@
               }
             }
           ]
+        },
+        {
+          "branch": 6,
+          "cards": [
+            {
+              "type": "turn",
+              "command": "shoot north",
+              "assertions": {
+                "contains": [
+                  "strikes something that is not rock, and buries itself.",
+                  "*** You have killed the wumpus ***",
+                  "You have risen to the rank of a Wumpus-Slayer."
+                ],
+                "states": [
+                  "the wumpus is shot"
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "look",
+              "assertions": {
+                "contains": [
+                  "The game has ended"
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "restart",
+              "assertions": {
+                "contains": [
+                  "The story restarts."
+                ]
+              }
+            },
+            {
+              "type": "turn",
+              "command": "look",
+              "assertions": {
+                "contains": [
+                  "Tunnels lead"
+                ],
+                "notContains": [
+                  "The game has ended"
+                ]
+              }
+            }
+          ]
         }
       ]
     },
