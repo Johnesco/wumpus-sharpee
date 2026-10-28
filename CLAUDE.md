@@ -168,7 +168,7 @@ Built output at the root (`play.html`, `game.js`, `*.css`, `lib/`, `tests.html`,
 
 **SDLC profile:** core
 
-Shared rules live in the workspace: `../CLAUDE.md` (loaded automatically), `../reference/chord-cookbook.md` (Chord lessons that are true here), `../reference/tests-document.md` (the tests document). Build and ship from the workspace:
+Shared rules live in the workspace: `../CLAUDE.md` (loaded automatically), `../reference/chord-cookbook.md` (Chord lessons that are true here), `../reference/tests-document.md` (the tests document - written for the old single-file format; this game now uses the 5.5.0 test tree, see `docs/spike-findings.md`, fourth pass). Build and ship from the workspace:
 
 ```bash
 python ../tools/build.py wumpus-sharpee --force
@@ -204,15 +204,48 @@ This project uses the [sdlc-baseline](https://github.com/Johnesco/sdlc-baseline)
   deliberately.
 - **Watch for `walkthrough.coverage.json`.** If that marker file ever appears at
   the repo root, delete it before building. It tells `tools/build.py` to keep a
-  room-sweeping walkthrough instead of deriving one from the tests document, and a
+  room-sweeping walkthrough instead of deriving one from the test tree, and a
   room sweep cannot survive this game: two of the twenty-five rooms kill you, and
   every command after the first lethal room records the engine's *game has
   ended* error instead of prose.
-  `walkthrough.txt` must stay the tests document's main line.
+  `walkthrough.txt` must stay the test tree's main line.
+- **`npm ci` warns that `glob@10.5.0` is deprecated.** Harmless: it comes from
+  `@sharpee/branch-tester` and `@sharpee/transcript-tester` under
+  `@sharpee/devkit`, which only run tests and builds and never reach `game.js`.
+  Do not override it; it goes away when Sharpee updates the dependency.
 
 ### Architecture Decisions
 
 ADRs live in `docs/adr/` once the first one exists (index: `docs/adr/README.md`). Format, stub, and threshold rule: [sdlc-baseline `docs/adrs.md`](https://github.com/Johnesco/sdlc-baseline/blob/main/docs/adrs.md).
+
+## Open Handoff (2026-10-28) — read this first
+
+0.4.0 is committed and pushed on branch `claude/kind-mccarthy-ttos9w`. It is
+**not merged to `main` and not shipped**. Still to do, in order:
+
+1. **Build in the workspace:** `npm ci` then `python ../tools/build.py
+   wumpus-sharpee --force`. **Unknown risk:** `build.py` predates the test tree
+   and may still look for the deleted `wumpus-sharpee.tests.json`. If it fails
+   there, it needs teaching the `wumpus-sharpee.tests/` directory (or derive the
+   walkthrough from the tree's main line, file `xwn1k4xz.json` onward).
+2. **Check the build output:** `tests.html` should show about 23 cards / 87
+   assertions (it still shows the old 22 / 77 until rebuilt), and
+   `walkthrough.txt` must still read `read note`, `west`, `south`, `west`,
+   `shoot north`. `walkthrough-guide.txt` mirrors those lines and needs no change.
+3. **Commit, merge to `main`, ship:** `python C:/code/ifhub/tools/ship.py
+   wumpus-sharpee`, then confirm the "Deploy to GitHub Pages" run is green
+   (`ship.py` has reported success on a failed push before) and that the live
+   title screen says Story v0.4.0.
+4. **Process debt:** no Issue or ADR stub was filed for the 0.4.0 port and
+   refactor. File one retroactively and link the commit (`8e4d8d5`). Verify
+   (playtest) is human-owned and not done.
+5. **Known platform issue, not ours:** after an ending the browser disables
+   the command line while the prompt says to type RESTART; File → Restart
+   works. Same in the shipped 5.4.1 build. Worth reporting upstream to Sharpee.
+
+Gates that pass on the branch: `npx sharpee compose wumpus-sharpee.story
+--check`, `npx sharpee test` (23 cards, 87 assertions, 2/2 claims held),
+`python scripts/check-cave.py`.
 
 ## Project History
 
