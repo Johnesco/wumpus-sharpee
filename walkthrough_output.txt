@@ -42,7 +42,7 @@ Fresh blood means the wumpus is close - not in this room, but in one of the room
 
 So do not go and look. Going and looking is how the blood got here.
 
-You have an arrow, and an arrow will go down a tunnel without you. Work the room out from what you have seen, stand somewhere you trust, and SHOOT along the tunnel you want - SHOOT NORTH, SHOOT SOUTHWEST. Keep the map.
+You have an arrow, and an arrow will go down a tunnel without you. Work the room out from what you have seen, stand somewhere you trust, and SHOOT along the tunnel you want - SHOOT NORTH, SHOOT SOUTHEAST. Keep the map.
 
 You only get the one arrow.
 

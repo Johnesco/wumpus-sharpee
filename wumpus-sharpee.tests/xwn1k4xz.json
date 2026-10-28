@@ -1,0 +1,41 @@
+{
+  "cards": [
+    {
+      "assertions": {
+        "channels": [
+          {
+            "id": "info.title",
+            "is": "Hunt the Wumpus"
+          },
+          {
+            "id": "info.description",
+            "is": "Twenty-five dark rooms, one wumpus, one bottomless pit, and one arrow."
+          }
+        ]
+      },
+      "id": "r093uadh",
+      "type": "opening"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "Shambles",
+          "The tool marks are gouges, four at a time",
+          "Tunnels lead south and west."
+        ],
+        "notContains": [
+          "Blood is smeared",
+          "A grey slime films the rock"
+        ],
+        "states": [
+          "player.location = Shambles",
+          "wumpus.location = Drum",
+          "the wumpus is sleeping"
+        ]
+      },
+      "id": "8amnr995",
+      "type": "boot"
+    }
+  ],
+  "id": "xwn1k4xz"
+}

@@ -1,0 +1,20 @@
+{
+  "cards": [
+    {
+      "assertions": {
+        "contains": [
+          "Drum",
+          "it is bulk, and it has been waiting for you to finish walking into it.",
+          "*** You have been eaten by the wumpus ***"
+        ]
+      },
+      "command": "north",
+      "ending": "eaten",
+      "id": "ib6wg8db",
+      "type": "turn"
+    }
+  ],
+  "id": "mrktn5i1",
+  "ordinal": 1,
+  "parent": "ipduldjr"
+}

@@ -10,7 +10,9 @@
 ## The wumpus and the slime pit are entities with locations, not properties of
 ## rooms. Every warning, every death and every arrow is then a plain condition
 ## over where those two things are. Adjacency is authored, not computed: Chord
-## has no adjacency predicate, by deliberate design. See docs/spike-findings.md.
+## has no adjacency predicate, by deliberate design. The map is one table, on
+## the Cave region below; the warnings and the arrows are written against it.
+## See docs/cave-map.md and docs/spike-findings.md.
 ##
 ## You get one arrow. An arrow flies straight on until the tunnel bends, so a
 ## shot can reach up to four rooms down a gallery - and any shot that does not
@@ -21,7 +23,7 @@ story
   authors:
     John Googol
   id: wumpus-sharpee
-  story-version: 0.3.2
+  story-version: 0.4.0
   ifid: CDF72E4B-C043-4559-B972-9402939378A6
   description: Twenty-five dark rooms, one wumpus, one bottomless pit, and one arrow.
   prologue:
@@ -76,57 +78,63 @@ story
     phrase first-blood when warned
   end on
 
-  on every turn
-    phrase tunnels-cistern when the player is in the Cistern
-    phrase tunnels-font when the player is in the Font
-    phrase tunnels-flue when the player is in the Flue
-    phrase tunnels-rift when the player is in the Rift
-    phrase tunnels-eyrie when the player is in the Eyrie
-    phrase tunnels-bone-shelf when the player is in the Bone Shelf
-    phrase tunnels-sump when the player is in the Sump
-    phrase tunnels-crooked-stair when the player is in the Crooked Stair
-    phrase tunnels-dry-vault when the player is in the Dry Vault
-    phrase tunnels-chimney when the player is in the Chimney
-    phrase tunnels-weeping-gallery when the player is in the Weeping Gallery
-    phrase tunnels-throat when the player is in the Throat
-    phrase tunnels-scree-fall when the player is in the Scree Fall
-    phrase tunnels-anvil when the player is in the Anvil
-    phrase tunnels-cold-seep when the player is in the Cold Seep
-    phrase tunnels-bellows when the player is in the Bellows
-    phrase tunnels-larder when the player is in the Larder
-    phrase tunnels-drum when the player is in the Drum
-    phrase tunnels-dead-well when the player is in the Dead Well
-    phrase tunnels-shambles when the player is in the Shambles
-    phrase tunnels-cellar when the player is in the Cellar
-    phrase tunnels-mire when the player is in the Mire
-    phrase tunnels-gullet when the player is in the Gullet
-    phrase tunnels-rookery when the player is in the Rookery
-    phrase tunnels-deep when the player is in the Deep
-  end on
-
 ## =========================================================================
-## THE CAVE - 25 rooms. Each tunnel is declared once; Chord makes it two-way.
-## The tunnel list is a header daemon rather than a room detail: a
-## detail is appended inside the description paragraph and silently
-## drops {br}, so it could not be given the line of its own that the
-## player needs to read it at a glance.
+## THE CAVE - one region, and the whole map is its exit table. Each tunnel
+## is written once, from its west or north end; Chord infers the way back.
+## Rooms that only ever receive tunnels have no row.
 ## =========================================================================
 
-create the Cistern
-  a room
-  aka cistern
-  east to the Font
-  southeast to the Sump
+create the Cave, a region
+  exits
+    the Cistern: east to the Font, southeast to the Sump
+    the Font: east to the Flue, south to the Sump
+    the Flue: east to the Rift, south to the Crooked Stair
+    the Rift: east to the Eyrie, southeast to the Chimney, south to the Dry Vault
+    the Eyrie: south to the Chimney
+    the Bone Shelf: east to the Sump, south to the Weeping Gallery
+    the Sump: east to the Crooked Stair
+    the Crooked Stair: east to the Dry Vault, southeast to the Anvil
+    the Dry Vault: south to the Anvil
+    the Chimney: south to the Cold Seep
+    the Weeping Gallery: southeast to the Larder, south to the Bellows
+    the Throat: east to the Scree Fall, southeast to the Drum, south to the Larder
+    the Scree Fall: east to the Anvil
+    the Anvil: east to the Cold Seep, south to the Dead Well
+    the Bellows: east to the Larder, south to the Cellar
+    the Larder: east to the Drum, south to the Mire
+    the Drum: south to the Gullet
+    the Dead Well: east to the Shambles, southeast to the Deep, south to the Rookery
+    the Shambles: south to the Deep
+    the Cellar: east to the Mire
+    the Gullet: east to the Rookery
+    the Rookery: east to the Deep
+
+  The cave under the hill: twenty-five rooms and no way out.
+
+## Every room in the cave is a `cavern`. The trait carries what is the same
+## everywhere - the familiarity ladder MAP reads, and the daemon that prints
+## the room's tunnel list on its own line every turn the hunter survives. A
+## room supplies only what is its own: its prose, its two warnings, and the
+## words of its tunnel list. The list is a phrase rather than a room detail
+## because a detail is appended inside the description paragraph and drops
+## {br}, so it could not get the line of its own the player needs to read it
+## at a glance.
+
+define trait cavern
   states: strange, seen-once, seen-twice, well-known
+  on every turn while the player is in it and not the wumpus is here and not the slime pit is here
+    phrase tunnels
+  end on
+end trait
+
+create the Cistern, a room, cavern
+  in the Cave
+  aka cistern
+  phrase tunnels:
+    Tunnels lead east and southeast.
 
   A pool sunk into the rock, its rim cut square by somebody a long time ago,
   using tools. Whoever it was did not finish the fourth side.
-
-  after the player entering
-    change the Cistern to well-known when the Cistern is seen-twice
-    change the Cistern to seen-twice when the Cistern is seen-once
-    change the Cistern to seen-once when the Cistern is strange
-  end after
 
   phrase detail while the wumpus is in the Font or the wumpus is in the Sump:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -135,22 +143,15 @@ create the Cistern
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Font
-  a room
+create the Font, a room, cavern
+  in the Cave
   aka font, basin
-  east to the Flue
-  south to the Sump
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead east, south and west.
 
   A basin worn into the floor, brimful of water so still it reads as glass.
   Something has been drinking here. The mud at the rim is printed and printed
   again, always the same shape, always far too wide.
-
-  after the player entering
-    change the Font to well-known when the Font is seen-twice
-    change the Font to seen-twice when the Font is seen-once
-    change the Font to seen-once when the Font is strange
-  end after
 
   phrase detail while the wumpus is in the Cistern or the wumpus is in the Flue or the wumpus is in the Sump:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -159,22 +160,15 @@ create the Font
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Flue
-  a room
+create the Flue, a room, cavern
+  in the Cave
   aka flue, chimney shaft
-  east to the Rift
-  south to the Crooked Stair
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead east, south and west.
 
   A shaft climbs out of the ceiling and narrows to nothing, too tight to
   follow even if you wanted to. Cold air comes down it in a steady draw, the
   way breath goes into a body rather than out of one.
-
-  after the player entering
-    change the Flue to well-known when the Flue is seen-twice
-    change the Flue to seen-twice when the Flue is seen-once
-    change the Flue to seen-once when the Flue is strange
-  end after
 
   phrase detail while the wumpus is in the Font or the wumpus is in the Rift or the wumpus is in the Crooked Stair:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -183,22 +177,14 @@ create the Flue
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Rift
-  a room
+create the Rift, a room, cavern
+  in the Cave
   aka rift, seam
-  east to the Eyrie
-  southeast to the Chimney
-  south to the Dry Vault
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead east, southeast, south and west.
 
   The floor splits along a seam you could lose a boot in. Pebbles kicked
   over the edge rattle for a long time and never quite arrive.
-
-  after the player entering
-    change the Rift to well-known when the Rift is seen-twice
-    change the Rift to seen-twice when the Rift is seen-once
-    change the Rift to seen-once when the Rift is strange
-  end after
 
   phrase detail while the wumpus is in the Flue or the wumpus is in the Eyrie or the wumpus is in the Dry Vault or the wumpus is in the Chimney:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -207,20 +193,14 @@ create the Rift
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Eyrie
-  a room
+create the Eyrie, a room, cavern
+  in the Cave
   aka eyrie, nest
-  south to the Chimney
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead south and west.
 
   A ledge high in a chamber whose floor you cannot see. Something roosted
   here once and left the shells of its eggs, each one the size of a skull.
-
-  after the player entering
-    change the Eyrie to well-known when the Eyrie is seen-twice
-    change the Eyrie to seen-twice when the Eyrie is seen-once
-    change the Eyrie to seen-once when the Eyrie is strange
-  end after
 
   phrase detail while the wumpus is in the Rift or the wumpus is in the Chimney:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -229,22 +209,15 @@ create the Eyrie
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Bone Shelf
-  a room
+create the Bone Shelf, a room, cavern
+  in the Cave
   aka shelf, bones, bone
-  east to the Sump
-  south to the Weeping Gallery
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead east and south.
 
   A ledge of pale flowstone, and laid along it the small bones of animals
   that came in and did not leave. They have been sorted by size. That is
   considerably worse than scattered.
-
-  after the player entering
-    change the Bone Shelf to well-known when the Bone Shelf is seen-twice
-    change the Bone Shelf to seen-twice when the Bone Shelf is seen-once
-    change the Bone Shelf to seen-once when the Bone Shelf is strange
-  end after
 
   phrase detail while the wumpus is in the Sump or the wumpus is in the Weeping Gallery:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -253,20 +226,14 @@ create the Bone Shelf
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Sump
-  a room
+create the Sump, a room, cavern
+  in the Cave
   aka sump
-  east to the Crooked Stair
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north, east, west and northwest.
 
   Standing water over the whole floor, ankle deep and absolutely still. It
   takes the light off your lantern and returns none of it.
-
-  after the player entering
-    change the Sump to well-known when the Sump is seen-twice
-    change the Sump to seen-twice when the Sump is seen-once
-    change the Sump to seen-once when the Sump is strange
-  end after
 
   phrase detail while the wumpus is in the Cistern or the wumpus is in the Font or the wumpus is in the Bone Shelf or the wumpus is in the Crooked Stair:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -275,21 +242,14 @@ create the Sump
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Crooked Stair
-  a room
+create the Crooked Stair, a room, cavern
+  in the Cave
   aka stair, crooked, steps
-  east to the Dry Vault
-  southeast to the Anvil
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north, east, southeast and west.
 
   The rock has collapsed into steps, every one of them canted the wrong way.
   You climb it sideways with a hand on the wall, and the wall is wet.
-
-  after the player entering
-    change the Crooked Stair to well-known when the Crooked Stair is seen-twice
-    change the Crooked Stair to seen-twice when the Crooked Stair is seen-once
-    change the Crooked Stair to seen-once when the Crooked Stair is strange
-  end after
 
   phrase detail while the wumpus is in the Flue or the wumpus is in the Sump or the wumpus is in the Dry Vault or the wumpus is in the Anvil:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -298,20 +258,14 @@ create the Crooked Stair
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Dry Vault
-  a room
+create the Dry Vault, a room, cavern
+  in the Cave
   aka vault, dry
-  south to the Anvil
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north, south and west.
 
   A high round chamber, bone dry, walls smoothed as if poured. Your smallest
   sound comes back four times and the fourth one is not yours.
-
-  after the player entering
-    change the Dry Vault to well-known when the Dry Vault is seen-twice
-    change the Dry Vault to seen-twice when the Dry Vault is seen-once
-    change the Dry Vault to seen-once when the Dry Vault is strange
-  end after
 
   phrase detail while the wumpus is in the Rift or the wumpus is in the Crooked Stair or the wumpus is in the Anvil:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -320,20 +274,14 @@ create the Dry Vault
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Chimney
-  a room
+create the Chimney, a room, cavern
+  in the Cave
   aka chimney
-  south to the Cold Seep
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north, south and northwest.
 
   A vertical crack you have to turn sideways to pass, your back on one face
   and your boots on the other. It exhales when you are halfway through.
-
-  after the player entering
-    change the Chimney to well-known when the Chimney is seen-twice
-    change the Chimney to seen-twice when the Chimney is seen-once
-    change the Chimney to seen-once when the Chimney is strange
-  end after
 
   phrase detail while the wumpus is in the Rift or the wumpus is in the Eyrie or the wumpus is in the Cold Seep:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -342,21 +290,14 @@ create the Chimney
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Weeping Gallery
-  a room
+create the Weeping Gallery, a room, cavern
+  in the Cave
   aka gallery, weeping
-  southeast to the Larder
-  south to the Bellows
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north, southeast and south.
 
   Water beads across every inch of the ceiling and lets go a drop at a time,
   in no rhythm you can learn. The floor has gone soft with it.
-
-  after the player entering
-    change the Weeping Gallery to well-known when the Weeping Gallery is seen-twice
-    change the Weeping Gallery to seen-twice when the Weeping Gallery is seen-once
-    change the Weeping Gallery to seen-once when the Weeping Gallery is strange
-  end after
 
   phrase detail while the wumpus is in the Bone Shelf or the wumpus is in the Bellows or the wumpus is in the Larder:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -365,22 +306,14 @@ create the Weeping Gallery
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Throat
-  a room
+create the Throat, a room, cavern
+  in the Cave
   aka throat, gullet passage
-  east to the Scree Fall
-  southeast to the Drum
-  south to the Larder
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead east, southeast and south.
 
   The passage narrows to a gullet of ribbed stone and swallows you through it.
   The air here is warmer. You would rather it were not warmer.
-
-  after the player entering
-    change the Throat to well-known when the Throat is seen-twice
-    change the Throat to seen-twice when the Throat is seen-once
-    change the Throat to seen-once when the Throat is strange
-  end after
 
   phrase detail while the wumpus is in the Scree Fall or the wumpus is in the Larder or the wumpus is in the Drum:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -389,20 +322,14 @@ create the Throat
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Scree Fall
-  a room
+create the Scree Fall, a room, cavern
+  in the Cave
   aka scree, fall
-  east to the Anvil
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead east and west.
 
   A slope of broken rock runs down out of a collapse overhead. Everything you
   put your weight on wants to travel.
-
-  after the player entering
-    change the Scree Fall to well-known when the Scree Fall is seen-twice
-    change the Scree Fall to seen-twice when the Scree Fall is seen-once
-    change the Scree Fall to seen-once when the Scree Fall is strange
-  end after
 
   phrase detail while the wumpus is in the Throat or the wumpus is in the Anvil:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -411,22 +338,15 @@ create the Scree Fall
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Anvil
-  a room
+create the Anvil, a room, cavern
+  in the Cave
   aka anvil
-  east to the Cold Seep
-  south to the Dead Well
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north, east, south, west and northwest.
 
   A single block of fallen ceiling sits square in the middle of the floor,
   flat on top, and scored all over with long parallel grooves. Four of them,
   evenly spaced, over and over.
-
-  after the player entering
-    change the Anvil to well-known when the Anvil is seen-twice
-    change the Anvil to seen-twice when the Anvil is seen-once
-    change the Anvil to seen-once when the Anvil is strange
-  end after
 
   phrase detail while the wumpus is in the Crooked Stair or the wumpus is in the Dry Vault or the wumpus is in the Scree Fall or the wumpus is in the Cold Seep or the wumpus is in the Dead Well:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -435,19 +355,14 @@ create the Anvil
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Cold Seep
-  a room
+create the Cold Seep, a room, cavern
+  in the Cave
   aka seep, cold
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north and west.
 
   Water comes through the wall here without any sound at all, sheeting down
   the rock and vanishing into a crack. It is colder than the air by a lot.
-
-  after the player entering
-    change the Cold Seep to well-known when the Cold Seep is seen-twice
-    change the Cold Seep to seen-twice when the Cold Seep is seen-once
-    change the Cold Seep to seen-once when the Cold Seep is strange
-  end after
 
   phrase detail while the wumpus is in the Chimney or the wumpus is in the Anvil:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -456,22 +371,15 @@ create the Cold Seep
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Bellows
-  a room
+create the Bellows, a room, cavern
+  in the Cave
   aka bellows, slot
-  east to the Larder
-  south to the Cellar
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north, east and south.
 
   Air pushes through a low slot in the far wall and draws back again, in and
   out, on a slow patient count. Either something very large is asleep down
   there, or the hill itself is breathing.
-
-  after the player entering
-    change the Bellows to well-known when the Bellows is seen-twice
-    change the Bellows to seen-twice when the Bellows is seen-once
-    change the Bellows to seen-once when the Bellows is strange
-  end after
 
   phrase detail while the wumpus is in the Weeping Gallery or the wumpus is in the Larder or the wumpus is in the Cellar:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -480,22 +388,15 @@ create the Bellows
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Larder
-  a room
+create the Larder, a room, cavern
+  in the Cave
   aka larder
-  east to the Drum
-  south to the Mire
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north, east, south, west and northwest.
 
   Dry, and cold, and used. Things have been carried here and set down: hide,
   a hoof, a boot with the foot still in it. None of it is fresh. None of it
   is old either.
-
-  after the player entering
-    change the Larder to well-known when the Larder is seen-twice
-    change the Larder to seen-twice when the Larder is seen-once
-    change the Larder to seen-once when the Larder is strange
-  end after
 
   phrase detail while the wumpus is in the Weeping Gallery or the wumpus is in the Throat or the wumpus is in the Bellows or the wumpus is in the Drum or the wumpus is in the Mire:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -504,20 +405,14 @@ create the Larder
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Drum
-  a room
+create the Drum, a room, cavern
+  in the Cave
   aka drum
-  south to the Gullet
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead south, west and northwest.
 
   The floor rings hollow underfoot, one deep struck note that travels further
   than you would like it to. There is a space beneath this space.
-
-  after the player entering
-    change the Drum to well-known when the Drum is seen-twice
-    change the Drum to seen-twice when the Drum is seen-once
-    change the Drum to seen-once when the Drum is strange
-  end after
 
   phrase detail while the wumpus is in the Throat or the wumpus is in the Larder or the wumpus is in the Gullet:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -526,23 +421,15 @@ create the Drum
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Dead Well
-  a room
+create the Dead Well, a room, cavern
+  in the Cave
   aka well, dead well, shaft
-  east to the Shambles
-  southeast to the Deep
-  south to the Rookery
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north, east, southeast and south.
 
   A shaft drops straight down through the middle of the floor, ringed by a lip
   of stone worn smooth by something that uses it. Nothing comes back up out
   of it. Not even sound.
-
-  after the player entering
-    change the Dead Well to well-known when the Dead Well is seen-twice
-    change the Dead Well to seen-twice when the Dead Well is seen-once
-    change the Dead Well to seen-once when the Dead Well is strange
-  end after
 
   phrase detail while the wumpus is in the Anvil or the wumpus is in the Shambles or the wumpus is in the Rookery or the wumpus is in the Deep:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -551,20 +438,14 @@ create the Dead Well
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Shambles
-  a room
+create the Shambles, a room, cavern
+  in the Cave
   aka shambles
-  south to the Deep
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead south and west.
 
   The passage has been widened, and not by water. The tool marks are gouges,
   four at a time, and they are at the height of your shoulder.
-
-  after the player entering
-    change the Shambles to well-known when the Shambles is seen-twice
-    change the Shambles to seen-twice when the Shambles is seen-once
-    change the Shambles to seen-once when the Shambles is strange
-  end after
 
   phrase detail while the wumpus is in the Dead Well or the wumpus is in the Deep:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -573,20 +454,14 @@ create the Shambles
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Cellar
-  a room
+create the Cellar, a room, cavern
+  in the Cave
   aka cellar
-  east to the Mire
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north and east.
 
   A low flat room with a floor of dried mud, cracked into plates. Something
   crossed it while it was still wet and the prints have set like pottery.
-
-  after the player entering
-    change the Cellar to well-known when the Cellar is seen-twice
-    change the Cellar to seen-twice when the Cellar is seen-once
-    change the Cellar to seen-once when the Cellar is strange
-  end after
 
   phrase detail while the wumpus is in the Bellows or the wumpus is in the Mire:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -595,19 +470,14 @@ create the Cellar
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Mire
-  a room
+create the Mire, a room, cavern
+  in the Cave
   aka mire, mud
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north and west.
 
   Mud to the ankle, and it pulls. Whatever walks here regularly has worn a
   channel through the middle, and the channel is wider than the passage.
-
-  after the player entering
-    change the Mire to well-known when the Mire is seen-twice
-    change the Mire to seen-twice when the Mire is seen-once
-    change the Mire to seen-once when the Mire is strange
-  end after
 
   phrase detail while the wumpus is in the Larder or the wumpus is in the Cellar:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -616,20 +486,14 @@ create the Mire
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Gullet
-  a room
+create the Gullet, a room, cavern
+  in the Cave
   aka gullet
-  east to the Rookery
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north and east.
 
   The rock closes overhead and the floor tilts down, and for thirty feet you
   are walking inside something that was shaped by swallowing.
-
-  after the player entering
-    change the Gullet to well-known when the Gullet is seen-twice
-    change the Gullet to seen-twice when the Gullet is seen-once
-    change the Gullet to seen-once when the Gullet is strange
-  end after
 
   phrase detail while the wumpus is in the Drum or the wumpus is in the Rookery:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -638,20 +502,14 @@ create the Gullet
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Rookery
-  a room
+create the Rookery, a room, cavern
+  in the Cave
   aka rookery
-  east to the Deep
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north, east and west.
 
   The ceiling is pocked with hundreds of shallow hollows, each one polished.
   Nothing lives in them now. Everything that did left at the same time.
-
-  after the player entering
-    change the Rookery to well-known when the Rookery is seen-twice
-    change the Rookery to seen-twice when the Rookery is seen-once
-    change the Rookery to seen-once when the Rookery is strange
-  end after
 
   phrase detail while the wumpus is in the Dead Well or the wumpus is in the Gullet or the wumpus is in the Deep:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -660,20 +518,15 @@ create the Rookery
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-create the Deep
-  a room
+create the Deep, a room, cavern
+  in the Cave
   aka deep
-  states: strange, seen-once, seen-twice, well-known
+  phrase tunnels:
+    Tunnels lead north, west and northwest.
 
   The passage ends in air. Your light finds no wall, no ceiling, no floor
   beyond the edge you are standing on. The cave has been getting to this the
   whole time.
-
-  after the player entering
-    change the Deep to well-known when the Deep is seen-twice
-    change the Deep to seen-twice when the Deep is seen-once
-    change the Deep to seen-once when the Deep is strange
-  end after
 
   phrase detail while the wumpus is in the Dead Well or the wumpus is in the Shambles or the wumpus is in the Rookery:
     Blood is smeared along the walls here, dragged and dried and not yours.
@@ -682,20 +535,17 @@ create the Deep
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
-
 ## =========================================================================
 ## THE HAZARDS - placed by the start block, never by hand.
 ## =========================================================================
 
-create the wumpus
-  a person, proper, concealed
+create the wumpus, a person, proper, concealed
   pronouns it
   states: sleeping, shot
 
   Vast, and blind, and in no hurry whatsoever.
 
-create the slime pit
-  scenery, concealed
+create the slime pit, a thing, scenery, concealed
   aka pit, slime, hole
 
   A hole that goes down considerably further than sound does.
@@ -704,24 +554,40 @@ create the slime pit
 ## THE HUNTER
 ## =========================================================================
 
-create the hunter
-  a person
+## Each move steps the familiarity ladder of the room the hunter arrives in,
+## once. The rungs are stepped from the top down so a room climbs one rung
+## per visit, never three; `each` finds the one room that is at that rung
+## and has the player in it.
+
+create the hunter, a person
   playable
   aka me, myself, self
   starts in the Cistern
   carries the bow
   carries the note
 
+  after going
+    each here-again
+      change the match to well-known
+    end each
+    each here-new
+      change the match to seen-twice
+    end each
+    each here-strange
+      change the match to seen-once
+    end each
+  end after
+
   Lean, out of work, and a long way underground.
 
-create the bow
+create the bow, a thing
   aka arrow, arrows, quiver, shortbow
   readable
 
   A short bow, drawn smooth at the grip by somebody else's hands, and one
   arrow. There was never more than one arrow.
 
-create the note
+create the note, a thing
   aka paper, scrap, rules, instructions
   readable
 
@@ -734,23 +600,19 @@ create the note
 
 ## =========================================================================
 ## REMEMBERING - MAP does not draw a map. It asks how well you know the
-## room you are standing in. Each room keeps a familiarity ladder that is
-## stepped on the way in, and the three conditions below are OPEN - they
-## mention `it` - so `any <condition>` finds the one room that is both at
-## that rung and the room the player is standing in. Three lines, rather
-## than one per room per rung.
+## room you are standing in. The conditions are OPEN - they mention `it` -
+## so `any <condition>` and `each <condition>` find the one room that is
+## both at that rung and the room the player is standing in.
 ## =========================================================================
 
+define condition here-strange: it is strange and the player is in it
 define condition here-new: it is seen-once and the player is in it
 define condition here-again: it is seen-twice and the player is in it
 define condition here-known: it is well-known and the player is in it
 
 define action recalling
   grammar
-    map
-    remember
-    recall
-    think
+    map or remember or recall or think
     think back
     get bearings
   phrase recall-new when any here-new
@@ -767,10 +629,7 @@ define action recalling
 
 define action shooting-north
   grammar
-    shoot north
-    fire north
-    shoot arrow north
-    fire arrow north
+    shoot or fire [arrow] north or n
   the player must hold the bow: shoot-no-bow
   change the wumpus to shot when the player is in the Sump and the wumpus is in the Font
   change the wumpus to shot when the player is in the Crooked Stair and the wumpus is in the Flue
@@ -793,10 +652,7 @@ define action shooting-north
 
 define action shooting-east
   grammar
-    shoot east
-    fire east
-    shoot arrow east
-    fire arrow east
+    shoot or fire [arrow] east or e
   the player must hold the bow: shoot-no-bow
   change the wumpus to shot when the player is in the Cistern and (the wumpus is in the Font or the wumpus is in the Flue or the wumpus is in the Rift or the wumpus is in the Eyrie)
   change the wumpus to shot when the player is in the Font and (the wumpus is in the Flue or the wumpus is in the Rift or the wumpus is in the Eyrie)
@@ -820,10 +676,7 @@ define action shooting-east
 
 define action shooting-southeast
   grammar
-    shoot southeast
-    fire southeast
-    shoot arrow southeast
-    fire arrow southeast
+    shoot or fire [arrow] southeast or se
   the player must hold the bow: shoot-no-bow
   change the wumpus to shot when the player is in the Cistern and the wumpus is in the Sump
   change the wumpus to shot when the player is in the Rift and the wumpus is in the Chimney
@@ -837,10 +690,7 @@ define action shooting-southeast
 
 define action shooting-south
   grammar
-    shoot south
-    fire south
-    shoot arrow south
-    fire arrow south
+    shoot or fire [arrow] south or s
   the player must hold the bow: shoot-no-bow
   change the wumpus to shot when the player is in the Font and the wumpus is in the Sump
   change the wumpus to shot when the player is in the Flue and the wumpus is in the Crooked Stair
@@ -863,10 +713,7 @@ define action shooting-south
 
 define action shooting-west
   grammar
-    shoot west
-    fire west
-    shoot arrow west
-    fire arrow west
+    shoot or fire [arrow] west or w
   the player must hold the bow: shoot-no-bow
   change the wumpus to shot when the player is in the Font and the wumpus is in the Cistern
   change the wumpus to shot when the player is in the Flue and (the wumpus is in the Font or the wumpus is in the Cistern)
@@ -890,10 +737,7 @@ define action shooting-west
 
 define action shooting-northwest
   grammar
-    shoot northwest
-    fire northwest
-    shoot arrow northwest
-    fire arrow northwest
+    shoot or fire [arrow] northwest or nw
   the player must hold the bow: shoot-no-bow
   change the wumpus to shot when the player is in the Sump and the wumpus is in the Cistern
   change the wumpus to shot when the player is in the Chimney and the wumpus is in the Rift
@@ -904,6 +748,7 @@ define action shooting-northwest
   award kill when the wumpus is shot
   win kill-wumpus when the wumpus is shot
   kill the player woke-it when not the wumpus is shot
+
 
 
 ## =========================================================================
@@ -955,7 +800,7 @@ define phrases en-US
 
     You have an arrow, and an arrow will go down a tunnel without you. Work the
     room out from what you have seen, stand somewhere you trust, and SHOOT along
-    the tunnel you want - SHOOT NORTH, SHOOT SOUTHWEST. Keep the map.
+    the tunnel you want - SHOOT NORTH, SHOOT SOUTHEAST. Keep the map.
 
     You only get the one arrow.
   recall-new:
@@ -968,56 +813,8 @@ define phrases en-US
   recall-known:
     You have crossed this room enough times to walk it in the dark, and you may
     yet have to. Nothing about it has changed. Nothing about it is going to.
-  tunnels-cistern:
-    Tunnels lead east and southeast.
-  tunnels-font:
-    Tunnels lead east, south and west.
-  tunnels-flue:
-    Tunnels lead east, south and west.
-  tunnels-rift:
-    Tunnels lead east, southeast, south and west.
-  tunnels-eyrie:
-    Tunnels lead south and west.
-  tunnels-bone-shelf:
-    Tunnels lead east and south.
-  tunnels-sump:
-    Tunnels lead north, east, west and northwest.
-  tunnels-crooked-stair:
-    Tunnels lead north, east, southeast and west.
-  tunnels-dry-vault:
-    Tunnels lead north, south and west.
-  tunnels-chimney:
-    Tunnels lead north, south and northwest.
-  tunnels-weeping-gallery:
-    Tunnels lead north, southeast and south.
-  tunnels-throat:
-    Tunnels lead east, southeast and south.
-  tunnels-scree-fall:
-    Tunnels lead east and west.
-  tunnels-anvil:
-    Tunnels lead north, east, south, west and northwest.
-  tunnels-cold-seep:
-    Tunnels lead north and west.
-  tunnels-bellows:
-    Tunnels lead north, east and south.
-  tunnels-larder:
-    Tunnels lead north, east, south, west and northwest.
-  tunnels-drum:
-    Tunnels lead south, west and northwest.
-  tunnels-dead-well:
-    Tunnels lead north, east, southeast and south.
-  tunnels-shambles:
-    Tunnels lead south and west.
-  tunnels-cellar:
-    Tunnels lead north and east.
-  tunnels-mire:
-    Tunnels lead north and west.
-  tunnels-gullet:
-    Tunnels lead north and east.
-  tunnels-rookery:
-    Tunnels lead north, east and west.
-  tunnels-deep:
-    Tunnels lead north, west and northwest.
+  tunnels:
+    Tunnels lead somewhere you have not been told about.
   note-text:
     Written small, in a hand that got worse toward the bottom:{br}
     {br}
@@ -1039,11 +836,10 @@ define phrases en-US
 
 ## =========================================================================
 ## THE START - you wake somewhere in the middle of it, in a room that is
-## clear of both hazards and of both warnings. Note `move the hunter`,
-## not `move the player`: in a start block the latter is a silent no-op
-## and the character stays wherever `starts in` put them.
 ## clear of both hazards and of both warnings, and a fair walk from the
-## wumpus. There is no way out. There was never going to be a way out.
+## wumpus. Note `move the hunter`, not `move the player`: in a start block
+## the latter is a silent no-op and the character stays wherever `starts in`
+## put them. There is no way out. There was never going to be a way out.
 ## =========================================================================
 
 before the game starts

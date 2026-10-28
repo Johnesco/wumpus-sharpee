@@ -1,0 +1,99 @@
+{
+  "cards": [
+    {
+      "assertions": {
+        "contains": [
+          "You have not stood here before."
+        ],
+        "notContains": [
+          "You have been here once already."
+        ]
+      },
+      "command": "map",
+      "id": "8r1km0mf",
+      "type": "turn"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "Dead Well"
+        ]
+      },
+      "command": "west",
+      "id": "vvyrycek",
+      "type": "turn"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "You have not stood here before."
+        ]
+      },
+      "command": "map",
+      "id": "bmd2gnhj",
+      "type": "turn"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "Shambles"
+        ],
+        "states": [
+          "player.location = Shambles"
+        ]
+      },
+      "command": "east",
+      "id": "4gjraw9p",
+      "type": "turn"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "You have been here once already."
+        ],
+        "notContains": [
+          "You have not stood here before."
+        ]
+      },
+      "command": "map",
+      "id": "nmogs030",
+      "type": "turn"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "Dead Well"
+        ]
+      },
+      "command": "west",
+      "id": "6pn9z6kp",
+      "type": "turn"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "Shambles"
+        ]
+      },
+      "command": "east",
+      "id": "npuh5mo3",
+      "type": "turn"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "enough times to walk it in the dark"
+        ],
+        "notContains": [
+          "You have been here once already."
+        ]
+      },
+      "command": "map",
+      "id": "reux64ie",
+      "type": "turn"
+    }
+  ],
+  "id": "0vdg47m6",
+  "ordinal": 2,
+  "parent": "xwn1k4xz"
+}

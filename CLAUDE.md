@@ -8,7 +8,7 @@
 
 **Name:** Hunt the Wumpus
 **Purpose:** Twenty-five dark rooms, one wumpus, one bottomless pit, and one arrow.
-**Engine:** Sharpee, written in Chord (`wumpus-sharpee.story`)
+**Engine:** Sharpee 5.5.0, written in Chord 4.0.0 (`wumpus-sharpee.story`)
 **Repository:** https://github.com/Johnesco/wumpus-sharpee
 **Live:** https://johnesco.github.io/ifhub/app.html?game=wumpus-sharpee
 **Created:** 2026-09-10 with `tools/new_game.py`
@@ -44,8 +44,9 @@ The story file is the rest of the design record.
   room on purpose: they are a signal the player learns, not a mood. Never vary
   them for flavour.
 - Never say which direction a warning came from. The ambiguity is the puzzle.
-- Room descriptions do not list exits. The tunnel list is a separate line, put
-  there by the header daemon, so it reads as a menu rather than as prose.
+- Room descriptions do not list exits. The tunnel list is a separate line, each
+  room's own `phrase tunnels:`, printed by the `cavern` trait's daemon, so it
+  reads as a menu rather than as prose.
 - Concrete nouns, no adjective stacks. The cave is unpleasant because of what is
   in it, not because the prose says it is unpleasant.
 
@@ -56,7 +57,9 @@ wumpus-sharpee/
 ├── CLAUDE.md                THIS FILE
 ├── README.md                public documentation
 ├── wumpus-sharpee.story           the game; import .chord fragments as it grows
-├── wumpus-sharpee.tests.json        tests document, replayed by sharpee test
+├── wumpus-sharpee.tests/            test tree (manifest + one file per segment), replayed by sharpee test
+├── wumpus-sharpee.claims.chord      claims the test run proves; named by the manifest, never imported
+├── scripts/check-cave.py            checks every hand-written neighbour list against the compiled map
 ├── wumpus-sharpee.config.json       IFID
 ├── ifhub.conf               the IF Hub card
 ├── browser/wumpus-sharpee.css       author CSS override, loaded last
@@ -75,9 +78,12 @@ Built output at the root (`play.html`, `game.js`, `*.css`, `lib/`, `tests.html`,
   wumpus moves. Making them room states instead would break the moving wumpus.
 - **Adjacency is authored, not computed.** Chord has no adjacency predicate and
   the upstream ADR names that a deliberate non-goal. The map is hand-drawn, so its
-  adjacency is authoring-time data: each room names its own neighbours in its two
-  `detail` phrases, and each shooting action carries one `change` line per square
-  of the map. Pure Chord, no TypeScript hatch — a hatch here would be misuse under
+  adjacency is authoring-time data. The map itself is one table, `exits` on the
+  Cave region; each room names its own neighbours in its two `detail` phrases and
+  its tunnel list, the first-blood daemon has a line per room, and each shooting
+  action carries one `change` line per square of the map. All of those are
+  checked against the compiled map by `scripts/check-cave.py` - run it after
+  touching any of them. Pure Chord, no TypeScript hatch — a hatch here would be misuse under
   the rule on sharpee.net (*"if the language can already express what the hatch
   does, the hatch is misuse"*).
 - **A `win` does not stop the rest of an action body.** Every statement after a
@@ -121,7 +127,11 @@ Built output at the root (`play.html`, `game.js`, `*.css`, `lib/`, `tests.html`,
 ### Implemented
 - [x] 25-room cave: a 5x5 lattice with 11 tunnels cut and 6 diagonal shafts added
 - [x] Machine-checked topology — connected, degree 2-5, unique warning signatures,
-      every legal layout winnable without entering a hazard
+      every legal layout winnable without entering a hazard (`scripts/check-cave.py`,
+      which also checks every warning, tunnel list, first-blood line and arrow
+      flight against the map)
+- [x] Claims (`wumpus-sharpee.claims.chord`): `sharpee test` proves the seed-42
+      cave winnable without either hazard room in the walk's set
 - [x] Randomised wumpus, pit and start room over 10 layouts
 - [x] Blood and slime warnings, undirected, both can appear in one room
 - [x] Death by wumpus and death by pit
@@ -207,6 +217,25 @@ ADRs live in `docs/adr/` once the first one exists (index: `docs/adr/README.md`)
 ## Project History
 
 ### Recent Changes
+- 2026-10-28: **Story 0.4.0 — Sharpee 5.5.0 / Chord 4.0.0, and a refactor onto
+  the new language.** The forced change was small: Chord 4 requires every block
+  to name its kind, so the slime pit, the bow and the note became `a thing`. The
+  rest uses what 4.0 added. The map is one exit table on a `the Cave` region
+  instead of exit lines scattered through 25 rooms. A `cavern` trait carries the
+  familiarity states and the tunnel-list daemon, so each room keeps only its
+  prose, its warnings and its own `phrase tunnels:`. The 25 per-room familiarity
+  ladders became one `after going` clause on the hunter using `each`. Shooting
+  grammar is one line per direction (`shoot or fire [arrow] north or n`), which
+  also adds the short directions. Blocks fold (`create the Cistern, a room,
+  cavern`). The story is 898 lines, down from 1102, with the compiled map
+  identical and the main-line transcript byte-identical. The tests document was
+  converted to the new segmented test tree, each ending card now names its
+  ending, and a claims fragment proves the seed-42 cave winnable without a hazard
+  room. `scripts/check-cave.py` checks all the hand-written adjacency against the
+  compiled map, and on its first run found the first-blood tutorial still telling
+  the player to SHOOT SOUTHWEST (the 0.3.2 fix had only reached the note) — fixed.
+  `tests.html` was not regenerated: it needs the workspace's `tools/build.py`.
+  See `docs/spike-findings.md`, fourth pass.
 - 2026-09-16: **Docs caught up with the game.** The README and the purpose line
   still described the sixteen-room, three-arrow draft; the implemented list claimed
   shooting in eight directions where the cave's tunnels run in six; the walkthrough

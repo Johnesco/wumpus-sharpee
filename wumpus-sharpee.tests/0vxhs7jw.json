@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "assertions": {
+        "contains": [
+          "finds nothing but rock",
+          "stops pretending to be asleep",
+          "*** The wumpus found you first ***"
+        ],
+        "notContains": [
+          "*** You have killed the wumpus ***"
+        ],
+        "states": [
+          "the wumpus is sleeping"
+        ]
+      },
+      "command": "shoot east",
+      "ending": "woke-it",
+      "id": "m1xjt5a5",
+      "type": "turn"
+    }
+  ],
+  "id": "0vxhs7jw",
+  "ordinal": 2,
+  "parent": "ipduldjr"
+}

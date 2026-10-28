@@ -1,0 +1,23 @@
+{
+  "cards": [
+    {
+      "assertions": {
+        "contains": [
+          "strikes something that is not rock, and buries itself.",
+          "*** You have killed the wumpus ***",
+          "You have risen to the rank of a Wumpus-Slayer."
+        ],
+        "states": [
+          "the wumpus is shot"
+        ]
+      },
+      "command": "fire arrow n",
+      "ending": "kill-wumpus",
+      "id": "poioyus7",
+      "type": "turn"
+    }
+  ],
+  "id": "tb99epoo",
+  "ordinal": 3,
+  "parent": "ipduldjr"
+}

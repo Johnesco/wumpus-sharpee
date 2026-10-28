@@ -6,6 +6,8 @@ drawable on paper but cannot be solved by coordinate arithmetic: knowing a room
 is "one east" of another tells you nothing about whether you can walk it.
 
 North is up, west is left. Nothing joins on a diagonal unless it is drawn below.
+In the story the whole map is one table, `exits` on `the Cave` region, each
+tunnel written once from its west or north end.
 
 ```
     Cistern    -----      Font     -----      Flue     -----      Rift     -----     Eyrie
@@ -63,7 +65,10 @@ Every room and its tunnels:
 ## Why this shape
 
 The map is not decorative — it is checked. A cave is only usable here if all of
-the following hold, and the generator refuses to emit a story otherwise:
+the following hold. `python scripts/check-cave.py` compiles the story, reads the
+map the compiler built from the Cave region's exit table, and refuses it unless
+they do; it also checks that every warning, first-blood line, tunnel list and
+arrow flight in the story agrees with the map, since Chord cannot derive them:
 
 - **Connected.** Every room reachable from every other.
 - **Degree 2 to 5.** No dead ends (a degree-1 room can be sealed off by a single

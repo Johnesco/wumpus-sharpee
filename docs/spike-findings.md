@@ -114,7 +114,8 @@ So a detail can never be given a line of its own.
 
 That matters for anything the player needs to find at a glance. The tunnel list
 here ("Tunnels lead north and east.") began as a detail and rendered as the tail
-of a five-sentence paragraph. It is now a header daemon instead:
+of a five-sentence paragraph. It became a header daemon instead (at 0.4.0 the daemon moved onto the
+`cavern` trait - see the fourth pass):
 
 ```chord
   on every turn
@@ -183,6 +184,10 @@ start block seeds it: each arm of the `select randomly` ends with
 
 ## The auto-map that was built and then removed
 
+**Superseded at Chord 4.0.0.** Code hatches are gone from the language (upstream
+ADR-361): `define text … from` no longer parses, so the route below is closed,
+not merely unused. The notes stay as history.
+
 An earlier pass drew a real ASCII map from live world state, as an ADR-259 text
 hatch (`define text mapgrid from "./map.ts"`). It worked, and it is gone — the
 design went somewhere better, and the findings are kept because the next person
@@ -220,3 +225,55 @@ to want computed text will hit all of them:
   ```
 
   So: font from the platform, whitespace from one line of author CSS.
+
+---
+
+# Fourth pass — Chord 4.0.0, Sharpee 5.5.0 (2026-10-28)
+
+The port to the new language, and the refactor it made possible. Every form
+below was gate-checked and played, and the compiled map was diffed against the
+0.3.2 build's: the exits are identical, room for room.
+
+| Form | Verdict |
+|---|---|
+| A `create` block with no kind noun | Refused — `analysis.missing-kind-noun`. The slime pit, the bow and the note each needed `a thing`. The only change 4.0 forced. |
+| `create the Cistern, a room, cavern` | Works. The kind line folds onto the `create` line (ADR-362). |
+| A region `exits` table (ADR-360 D3) | Works, and is now the whole map. Rows are `the Room: east to the X, south to the Y`; reverses are inferred exactly as for room exit lines. A room joins with `in the Cave`. |
+| `on every turn while the player is in it` on a trait, with a per-room `phrase tunnels:` override | Works. One daemon on the trait prints each room's own tunnel list, replacing 25 `when the player is in …` lines. The trait needs a story-level default `tunnels:` phrase or it is `analysis.missing-phrase`. |
+| `after the player entering` on a **trait** | Compiles and **never fires**. The same clause on a room block binds to arrival; on a trait it routes as the `entering` action's interceptor (entering a thing), so a room composing the trait is never notified. Nothing warns. |
+| `after going` on the hunter, with `each <open condition>` | Works, and is what replaced the 25 per-room ladders. `each here-again` / `here-new` / `here-strange` find the one room that is at that rung and holds the player, stepped top-down so a room climbs one rung per visit. A top-level `when the hunter moves` is `parse.removed-when`; the clause has to live on the actor. |
+| `shoot or fire [arrow] north or n` | Works — `or` alternation and `[optional]` words (ADR-267) fold four grammar lines into one and add the short directions for free. |
+| A `claims` fragment named by the test manifest (ADR-365) | Works. `sharpee test` walks the declared rooms and verbs and reports *held*: the wumpus can be killed at seed 42 without either hazard room in the set. Claims never fail the build, by design. A `never` claim about a room outside its own set is held vacuously - write the room into the set or do not write the claim. |
+
+## The test document became a test tree
+
+`wumpus-sharpee.tests.json` is not read any more. `sharpee test` wants a
+`wumpus-sharpee.tests/` directory (ADR-355): a `manifest.json` and one file per
+segment of the branch tree, every card carrying an id. The old document was
+converted card for card. Two things changed in the conversion:
+
+- **A card that ends the story ends its line.** It carries `"ending": "<id>"`
+  (`eaten`, `swallowed`, `woke-it`, `kill-wumpus`) and nothing may follow it. The
+  engine now refuses a turn after an ending outright, so the old `look` /
+  `restart` / `look` check after the kill cannot be written as a tree line any
+  more. RESTART after an ending was checked in the browser instead: File →
+  Restart gives a fresh layout and a working command line. Typing RESTART does
+  not, because the page disables the command line at an ending even though the
+  ending prompt says to type it. The shipped 5.4.1 build does the same, so it is
+  the platform's, not the upgrade's.
+- **The runner derives a test per clause** (ADR-356) and fails the build if one
+  fails. Putting the tunnel daemon on the trait first failed it in the two rooms
+  holding a hazard at the seed, where the death ends the turn before the list
+  prints. The fix is the honest one: the daemon's head says
+  `and not the wumpus is here and not the slime pit is here`.
+
+## Adjacency is still authored, so now it is checked
+
+Chord 4 still has no adjacency predicate, so the neighbours are still written
+out in the warnings, the first-blood daemon and the arrow flights. What changed
+is that `scripts/check-cave.py` now compiles the story, reads the map the
+compiler built, and checks every one of those places against it - plus the
+four map properties in `docs/cave-map.md`, the start layouts, and every
+`SHOOT <direction>` the text tells the player to type. Its first run found the
+first-blood tutorial still telling the player to `SHOOT SOUTHWEST`, the bug
+0.3.2 fixed only in the note.

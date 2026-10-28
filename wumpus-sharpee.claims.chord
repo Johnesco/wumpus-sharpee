@@ -1,0 +1,20 @@
+## Hunt the Wumpus's claims: what the cave at the test seed can reach, each
+## under the rooms, things and verbs that are load-bearing on the way. The
+## test tree's manifest names this file; the story never imports it.
+##
+## At seed 42 the hunter wakes in the Shambles, the wumpus sleeps in the Drum
+## and the pit is in the Cistern. Neither hazard room is in any set below, so
+## a held claim is a proof that the walk never had to stand in one: the game
+## is won by deduction, not by going and looking (docs/cave-map.md).
+
+claims
+  needs rooms: the Shambles, the Dead Well, the Rookery, the Gullet, the Deep
+  needs things: the bow, the note
+  needs verbs: north, south, east, west, southeast, northwest, shoot north, shoot east, shoot west
+
+  claim the wumpus can be killed without entering a hazard
+    the story ends in victory
+
+  claim the first blood is taught on the way
+    the story is warned
+end claims

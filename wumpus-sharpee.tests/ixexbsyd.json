@@ -1,0 +1,85 @@
+{
+  "cards": [
+    {
+      "assertions": {
+        "contains": [
+          "Dead Well",
+          "Tunnels lead north, east, southeast and south."
+        ],
+        "notContains": [
+          "Blood is smeared",
+          "A grey slime films the rock"
+        ]
+      },
+      "command": "west",
+      "id": "iyh5jo8n",
+      "type": "turn"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "Anvil",
+          "Tunnels lead north, east, south, west and northwest."
+        ],
+        "notContains": [
+          "Blood is smeared",
+          "A grey slime films the rock"
+        ]
+      },
+      "command": "north",
+      "id": "i67d4w3w",
+      "type": "turn"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "Crooked Stair",
+          "Tunnels lead north, east, southeast and west."
+        ],
+        "notContains": [
+          "Blood is smeared",
+          "A grey slime films the rock"
+        ]
+      },
+      "command": "northwest",
+      "id": "nir45i21",
+      "type": "turn"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "Sump",
+          "A grey slime films the rock, cold and freshly laid"
+        ],
+        "notContains": [
+          "Blood is smeared"
+        ],
+        "states": [
+          "player.location = Sump"
+        ]
+      },
+      "command": "west",
+      "id": "850133w2",
+      "type": "turn"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "Cistern",
+          "It takes your leg to the hip and then the rest of you",
+          "*** You have fallen into the slime pit ***"
+        ],
+        "notContains": [
+          "Tunnels lead"
+        ]
+      },
+      "command": "northwest",
+      "ending": "swallowed",
+      "id": "wxz0aodr",
+      "type": "turn"
+    }
+  ],
+  "id": "ixexbsyd",
+  "ordinal": 1,
+  "parent": "xwn1k4xz"
+}

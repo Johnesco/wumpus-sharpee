@@ -1,0 +1,79 @@
+{
+  "cards": [
+    {
+      "assertions": {
+        "contains": [
+          "BLOOD ON THE WALLS MEANS IT IS NEXT DOOR.",
+          "NEITHER ONE TELLS YOU WHICH SIDE. THAT IS THE WHOLE PROBLEM.",
+          "YOU HAVE ONE ARROW. IF IT DOES NOT FIND HIM, HE FINDS YOU.",
+          "DRAW THE MAP."
+        ]
+      },
+      "command": "read note",
+      "id": "njd8b1vs",
+      "type": "turn"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "Dead Well",
+          "Tunnels lead north, east, southeast and south."
+        ],
+        "notContains": [
+          "Blood is smeared",
+          "A grey slime films the rock"
+        ],
+        "states": [
+          "player.location = Dead Well"
+        ]
+      },
+      "command": "west",
+      "id": "2s6p4gmf",
+      "type": "turn"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "Rookery",
+          "Tunnels lead north, east and west."
+        ],
+        "notContains": [
+          "Blood is smeared",
+          "A grey slime films the rock"
+        ],
+        "states": [
+          "player.location = Rookery"
+        ]
+      },
+      "command": "south",
+      "id": "raqdk6wq",
+      "type": "turn"
+    },
+    {
+      "assertions": {
+        "contains": [
+          "Gullet",
+          "Blood is smeared along the walls here, dragged and dried and not yours.",
+          "It is still tacky, it is smeared rather than spattered",
+          "Fresh blood means the wumpus is close - not in this room",
+          "You only get the one arrow.",
+          "Tunnels lead north and east.",
+          "SHOOT NORTH, SHOOT SOUTHEAST"
+        ],
+        "notContains": [
+          "SOUTHWEST"
+        ],
+        "states": [
+          "player.location = Gullet",
+          "story.state = warned"
+        ]
+      },
+      "command": "west",
+      "id": "470wkvqo",
+      "type": "turn"
+    }
+  ],
+  "id": "ipduldjr",
+  "ordinal": 0,
+  "parent": "xwn1k4xz"
+}

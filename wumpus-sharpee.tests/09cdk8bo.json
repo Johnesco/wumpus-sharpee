@@ -1,0 +1,23 @@
+{
+  "cards": [
+    {
+      "assertions": {
+        "contains": [
+          "strikes something that is not rock, and buries itself.",
+          "*** You have killed the wumpus ***",
+          "You have risen to the rank of a Wumpus-Slayer."
+        ],
+        "states": [
+          "the wumpus is shot"
+        ]
+      },
+      "command": "shoot north",
+      "ending": "kill-wumpus",
+      "id": "5bbuskmw",
+      "type": "turn"
+    }
+  ],
+  "id": "09cdk8bo",
+  "ordinal": 0,
+  "parent": "ipduldjr"
+}

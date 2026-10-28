@@ -12,7 +12,8 @@ This game is built and published from the Sharpee workspace, which holds the sha
 
 ```
 npx sharpee play                           # play in the terminal
-npx sharpee test                           # replay wumpus-sharpee.tests.json
+npx sharpee test                           # replay the test tree in wumpus-sharpee.tests/, and its claims
+python scripts/check-cave.py               # check every hand-written neighbour list against the map
 python ../tools/build.py wumpus-sharpee --force    # gates, build, tests, lay out the hub folder
 python C:/code/ifhub/tools/ship.py wumpus-sharpee  # publish and list on IF Hub
 ```
@@ -51,6 +52,6 @@ that you are on your own.
 
 ## Walkthrough
 
-`walkthrough.txt` at the root is the tests document's main line, and it wins.
+`walkthrough.txt` at the root is the test tree's main line, and it wins.
 It is written against seed 42, so it only works under `sharpee test`; a live game
 places the hazards somewhere else.
