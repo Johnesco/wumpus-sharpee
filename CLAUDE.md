@@ -220,36 +220,35 @@ ADRs live in `docs/adr/` once the first one exists (index: `docs/adr/README.md`)
 
 ## Open Handoff (2026-10-28) — read this first
 
-0.4.0 is committed and pushed on branch `claude/kind-mccarthy-ttos9w`. It is
-**not merged to `main` and not shipped**. Still to do, in order:
+0.4.0 is merged to `main` and **live** (the hub serves Story v0.4.0). It shipped
+with an empty `tests.html` (0 cards): Git for Windows checks out CRLF, and
+Sharpee 5.5 refuses test-tree and claims files that are not byte-canonical
+(#1). `.gitattributes` now pins `*.story`, `*.chord` and the test tree to LF,
+and the rebuilt report shows 23 cards / 87 assertions. Still to do:
 
-1. **Build in the workspace:** `npm ci` then `python ../tools/build.py
-   wumpus-sharpee --force`. **Unknown risk:** `build.py` predates the test tree
-   and may still look for the deleted `wumpus-sharpee.tests.json`. If it fails
-   there, it needs teaching the `wumpus-sharpee.tests/` directory (or derive the
-   walkthrough from the tree's main line, file `xwn1k4xz.json` onward).
-2. **Check the build output:** `tests.html` should show about 23 cards / 87
-   assertions (it still shows the old 22 / 77 until rebuilt), and
-   `walkthrough.txt` must still read `read note`, `west`, `south`, `west`,
-   `shoot north`. `walkthrough-guide.txt` mirrors those lines and needs no change.
-3. **Commit, merge to `main`, ship:** `python C:/code/ifhub/tools/ship.py
-   wumpus-sharpee`, then confirm the "Deploy to GitHub Pages" run is green
-   (`ship.py` has reported success on a failed push before) and that the live
-   title screen says Story v0.4.0.
-4. **Process debt:** no Issue or ADR stub was filed for the 0.4.0 port and
+1. **Push `main`** so Pages redeploys the corrected `tests.html`, then check
+   the live report reads 23 / 87 and close #1.
+2. **Process debt:** no Issue or ADR stub was filed for the 0.4.0 port and
    refactor. File one retroactively and link the commit (`8e4d8d5`). Verify
    (playtest) is human-owned and not done.
-5. **Known platform issue, not ours:** after an ending the browser disables
+3. **Known platform issue, not ours:** after an ending the browser disables
    the command line while the prompt says to type RESTART; File → Restart
    works. Same in the shipped 5.4.1 build. Worth reporting upstream to Sharpee.
+4. **Workspace, not this repo:** `tools/build.py` wrote the empty report
+   instead of failing when `sharpee test` refused its input; `dungeo-sharpee`
+   and `no-signal-home-sharpee` have the same CRLF working copies.
 
-Gates that pass on the branch: `npx sharpee compose wumpus-sharpee.story
---check`, `npx sharpee test` (23 cards, 87 assertions, 2/2 claims held),
-`python scripts/check-cave.py`.
+A stray `wumpus.story` (a separate sample credited to David Cornelson) sits
+untracked at the root. `sharpee build` refuses a folder with two `.story`
+files, so move it aside before building.
 
 ## Project History
 
 ### Recent Changes
+- 2026-10-28: **Test report fixed (#1).** The shipped 0.4.0 `tests.html` was
+  empty because CRLF checkouts make `sharpee test` refuse the test tree.
+  Added `.gitattributes` pinning story sources to LF and rebuilt: 23 cards /
+  87 assertions, 2/2 claims held, walkthrough unchanged.
 - 2026-10-28: **Story 0.4.0 — Sharpee 5.5.0 / Chord 4.0.0, and a refactor onto
   the new language.** The forced change was small: Chord 4 requires every block
   to name its kind, so the slime pit, the bow and the note became `a thing`. The

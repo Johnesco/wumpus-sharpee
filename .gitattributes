@@ -1,0 +1,5 @@
+# Sharpee refuses test-tree and claims files that are not byte-canonical, and
+# Git for Windows checks out CRLF by default. Pin the story sources to LF.
+*.story             text eol=lf
+*.chord             text eol=lf
+*.tests/*.json      text eol=lf
