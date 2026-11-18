@@ -8,7 +8,7 @@
 
 **Name:** Hunt the Wumpus
 **Purpose:** Twenty-five dark rooms, one wumpus, one bottomless pit, and one arrow.
-**Engine:** Sharpee 5.5.0, written in Chord 4.0.0 (`wumpus-sharpee.story`)
+**Engine:** Sharpee, written in Chord (`wumpus-sharpee.story`). The exact version is pinned in `package.json`.
 **Repository:** https://github.com/Johnesco/wumpus-sharpee
 **Live:** https://johnesco.github.io/ifhub/app.html?game=wumpus-sharpee
 **Created:** 2026-09-10 with `tools/new_game.py`
@@ -249,7 +249,10 @@ files, so move it aside before building.
   empty because CRLF checkouts make `sharpee test` refuse the test tree.
   Added `.gitattributes` pinning story sources to LF and rebuilt: 23 cards /
   87 assertions, 2/2 claims held, walkthrough unchanged.
-- 2026-10-28: **Story 0.4.0 — Sharpee 5.5.0 / Chord 4.0.0, and a refactor onto
+- 2026-11-18: **Moved to the current engine (#2).** No story change: the story was
+  already gate-clean. `src/browser-entry.ts` was regenerated from the devkit
+  template (the old one still imported hatch modules). 23 cards / 87 assertions.
+- 2026-10-28: **Story 0.4.0 — the Chord 4 engine, and a refactor onto
   the new language.** The forced change was small: Chord 4 requires every block
   to name its kind, so the slime pit, the bow and the note became `a thing`. The
   rest uses what 4.0 added. The map is one exit table on a `the Cave` region
