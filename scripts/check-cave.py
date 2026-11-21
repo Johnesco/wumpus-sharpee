@@ -118,6 +118,11 @@ def check_rooms(source, exits, neighbours):
         want = f"Tunnels lead {phrase_list(exits[room])}."
         if not tunnels or tunnels.group(1).strip() != want:
             problem(f"{room}'s tunnel list should read {want!r}")
+        # The opening's copy of the list: a detail shown while the hunter is
+        # waking, because the opening is not a turn and the daemon cannot print.
+        waking = re.search(r"phrase detail while the hunter is waking:\n\s+(.+)", block)
+        if not waking or waking.group(1).strip() != want:
+            problem(f"{room}'s waking detail should read {want!r}")
         for thing in ("wumpus", "slime pit"):
             detail = re.search(rf"phrase detail while (the {thing} is in .*):", block)
             got = rooms_in(detail.group(1), thing) if detail else set()

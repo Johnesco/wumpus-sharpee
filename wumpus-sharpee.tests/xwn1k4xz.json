@@ -11,13 +11,7 @@
             "id": "info.description",
             "is": "Twenty-five dark rooms, one wumpus, one bottomless pit, and one arrow."
           }
-        ]
-      },
-      "id": "r093uadh",
-      "type": "opening"
-    },
-    {
-      "assertions": {
+        ],
         "contains": [
           "Shambles",
           "The tool marks are gouges, four at a time",
@@ -33,8 +27,8 @@
           "the wumpus is sleeping"
         ]
       },
-      "id": "8amnr995",
-      "type": "boot"
+      "id": "r093uadh",
+      "type": "opening"
     }
   ],
   "id": "xwn1k4xz"

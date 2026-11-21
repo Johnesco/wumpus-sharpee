@@ -119,11 +119,23 @@ create the Cave, a region
 ## because a detail is appended inside the description paragraph and drops
 ## {br}, so it could not get the line of its own the player needs to read it
 ## at a glance.
+##
+## The opening is not a turn (Sharpee 5.7.0, ADR-404): the daemon does not run
+## before the first command, and no story code runs during the opening. The
+## opening's first look does print the room's description, so every room also
+## carries its tunnel list as a detail, shown only while the hunter is waking.
+## The daemon wakes the hunter on the first command. Prose is rendered at the
+## end of the turn, after the daemon, so from the first command on the detail
+## is already off and the daemon's own line is the only list printed. A detail
+## cannot take {br}, so in the opening the list ends the description paragraph.
+## The detail repeats the `tunnels` text because a phrase cannot invoke a
+## phrase; scripts/check-cave.py keeps the two equal.
 
 define trait cavern
   states: strange, seen-once, seen-twice, well-known
   on every turn while the player is in it and not the wumpus is here and not the slime pit is here
     phrase tunnels
+    change the hunter to awake
   end on
 end trait
 
@@ -143,6 +155,9 @@ create the Cistern, a room, cavern
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
+  phrase detail while the hunter is waking:
+    Tunnels lead east and southeast.
+
 create the Font, a room, cavern
   in the Cave
   aka font, basin
@@ -159,6 +174,9 @@ create the Font, a room, cavern
   phrase detail while the slime pit is in the Cistern or the slime pit is in the Flue or the slime pit is in the Sump:
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
+
+  phrase detail while the hunter is waking:
+    Tunnels lead east, south and west.
 
 create the Flue, a room, cavern
   in the Cave
@@ -177,6 +195,9 @@ create the Flue, a room, cavern
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
+  phrase detail while the hunter is waking:
+    Tunnels lead east, south and west.
+
 create the Rift, a room, cavern
   in the Cave
   aka rift, seam
@@ -193,6 +214,9 @@ create the Rift, a room, cavern
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
+  phrase detail while the hunter is waking:
+    Tunnels lead east, southeast, south and west.
+
 create the Eyrie, a room, cavern
   in the Cave
   aka eyrie, nest
@@ -208,6 +232,9 @@ create the Eyrie, a room, cavern
   phrase detail while the slime pit is in the Rift or the slime pit is in the Chimney:
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
+
+  phrase detail while the hunter is waking:
+    Tunnels lead south and west.
 
 create the Bone Shelf, a room, cavern
   in the Cave
@@ -226,6 +253,9 @@ create the Bone Shelf, a room, cavern
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
+  phrase detail while the hunter is waking:
+    Tunnels lead east and south.
+
 create the Sump, a room, cavern
   in the Cave
   aka sump
@@ -241,6 +271,9 @@ create the Sump, a room, cavern
   phrase detail while the slime pit is in the Cistern or the slime pit is in the Font or the slime pit is in the Bone Shelf or the slime pit is in the Crooked Stair:
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
+
+  phrase detail while the hunter is waking:
+    Tunnels lead north, east, west and northwest.
 
 create the Crooked Stair, a room, cavern
   in the Cave
@@ -258,6 +291,9 @@ create the Crooked Stair, a room, cavern
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
+  phrase detail while the hunter is waking:
+    Tunnels lead north, east, southeast and west.
+
 create the Dry Vault, a room, cavern
   in the Cave
   aka vault, dry
@@ -273,6 +309,9 @@ create the Dry Vault, a room, cavern
   phrase detail while the slime pit is in the Rift or the slime pit is in the Crooked Stair or the slime pit is in the Anvil:
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
+
+  phrase detail while the hunter is waking:
+    Tunnels lead north, south and west.
 
 create the Chimney, a room, cavern
   in the Cave
@@ -290,6 +329,9 @@ create the Chimney, a room, cavern
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
+  phrase detail while the hunter is waking:
+    Tunnels lead north, south and northwest.
+
 create the Weeping Gallery, a room, cavern
   in the Cave
   aka gallery, weeping
@@ -305,6 +347,9 @@ create the Weeping Gallery, a room, cavern
   phrase detail while the slime pit is in the Bone Shelf or the slime pit is in the Bellows or the slime pit is in the Larder:
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
+
+  phrase detail while the hunter is waking:
+    Tunnels lead north, southeast and south.
 
 create the Throat, a room, cavern
   in the Cave
@@ -322,6 +367,9 @@ create the Throat, a room, cavern
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
+  phrase detail while the hunter is waking:
+    Tunnels lead east, southeast and south.
+
 create the Scree Fall, a room, cavern
   in the Cave
   aka scree, fall
@@ -337,6 +385,9 @@ create the Scree Fall, a room, cavern
   phrase detail while the slime pit is in the Throat or the slime pit is in the Anvil:
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
+
+  phrase detail while the hunter is waking:
+    Tunnels lead east and west.
 
 create the Anvil, a room, cavern
   in the Cave
@@ -355,6 +406,9 @@ create the Anvil, a room, cavern
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
+  phrase detail while the hunter is waking:
+    Tunnels lead north, east, south, west and northwest.
+
 create the Cold Seep, a room, cavern
   in the Cave
   aka seep, cold
@@ -370,6 +424,9 @@ create the Cold Seep, a room, cavern
   phrase detail while the slime pit is in the Chimney or the slime pit is in the Anvil:
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
+
+  phrase detail while the hunter is waking:
+    Tunnels lead north and west.
 
 create the Bellows, a room, cavern
   in the Cave
@@ -388,6 +445,9 @@ create the Bellows, a room, cavern
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
+  phrase detail while the hunter is waking:
+    Tunnels lead north, east and south.
+
 create the Larder, a room, cavern
   in the Cave
   aka larder
@@ -405,6 +465,9 @@ create the Larder, a room, cavern
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
+  phrase detail while the hunter is waking:
+    Tunnels lead north, east, south, west and northwest.
+
 create the Drum, a room, cavern
   in the Cave
   aka drum
@@ -420,6 +483,9 @@ create the Drum, a room, cavern
   phrase detail while the slime pit is in the Throat or the slime pit is in the Larder or the slime pit is in the Gullet:
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
+
+  phrase detail while the hunter is waking:
+    Tunnels lead south, west and northwest.
 
 create the Dead Well, a room, cavern
   in the Cave
@@ -438,6 +504,9 @@ create the Dead Well, a room, cavern
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
+  phrase detail while the hunter is waking:
+    Tunnels lead north, east, southeast and south.
+
 create the Shambles, a room, cavern
   in the Cave
   aka shambles
@@ -453,6 +522,9 @@ create the Shambles, a room, cavern
   phrase detail while the slime pit is in the Dead Well or the slime pit is in the Deep:
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
+
+  phrase detail while the hunter is waking:
+    Tunnels lead south and west.
 
 create the Cellar, a room, cavern
   in the Cave
@@ -470,6 +542,9 @@ create the Cellar, a room, cavern
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
+  phrase detail while the hunter is waking:
+    Tunnels lead north and east.
+
 create the Mire, a room, cavern
   in the Cave
   aka mire, mud
@@ -485,6 +560,9 @@ create the Mire, a room, cavern
   phrase detail while the slime pit is in the Larder or the slime pit is in the Cellar:
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
+
+  phrase detail while the hunter is waking:
+    Tunnels lead north and west.
 
 create the Gullet, a room, cavern
   in the Cave
@@ -502,6 +580,9 @@ create the Gullet, a room, cavern
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
 
+  phrase detail while the hunter is waking:
+    Tunnels lead north and east.
+
 create the Rookery, a room, cavern
   in the Cave
   aka rookery
@@ -517,6 +598,9 @@ create the Rookery, a room, cavern
   phrase detail while the slime pit is in the Dead Well or the slime pit is in the Gullet or the slime pit is in the Deep:
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
+
+  phrase detail while the hunter is waking:
+    Tunnels lead north, east and west.
 
 create the Deep, a room, cavern
   in the Cave
@@ -534,6 +618,9 @@ create the Deep, a room, cavern
   phrase detail while the slime pit is in the Dead Well or the slime pit is in the Shambles or the slime pit is in the Rookery:
     A grey slime films the rock, cold and freshly laid, and the air has
     turned sweetish.
+
+  phrase detail while the hunter is waking:
+    Tunnels lead north, west and northwest.
 
 ## =========================================================================
 ## THE HAZARDS - placed by the start block, never by hand.
@@ -561,6 +648,7 @@ create the slime pit, a thing, scenery, concealed
 
 create the hunter, a person
   playable
+  states: waking, awake
   aka me, myself, self
   starts in the Cistern
   carries the bow

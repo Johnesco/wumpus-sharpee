@@ -277,3 +277,24 @@ four map properties in `docs/cave-map.md`, the start layouts, and every
 `SHOOT <direction>` the text tells the player to type. Its first run found the
 first-blood tutorial still telling the player to `SHOOT SOUTHWEST`, the bug
 0.3.2 fixed only in the note.
+
+## The opening stopped being a turn (2026-11-21)
+
+Sharpee 5.7.0 (ADR-404) runs the opening as a routine outside the turn count.
+No `on every turn` clause runs before the first command, so the cavern daemon
+no longer printed the start room's tunnels. Nothing else reaches the opening
+either: `when the game starts` only orders the three routines (`show-prologue`,
+`show-banner`, `do-first-look`) and refuses any other line; the opening's first
+look is a real LOOK, but looking consults no clause, and the loader refuses
+`after the player looking` on a room or trait ("no standard action consults
+`if.action.looking`"); a phrase in `before the game starts` would print above
+the prologue; the `the game starts` trigger belongs to chapters only.
+
+What does reach the opening is the room's description, details included. A
+`phrase detail while the hunter is waking` carries the list there, and the
+daemon wakes the hunter on the first command. Prose renders at the end of the
+turn, after the daemon, so the detail is already off by the time any command's
+description prints. Two limits shaped it: a detail takes no strategy (no
+`, first-time`), and a detail cannot invoke a phrase (`{tunnels}` is refused),
+so the list's text is written twice and `scripts/check-cave.py` checks both.
+
